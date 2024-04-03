@@ -2,3 +2,11 @@
   margin: 0;
   padding: 0;
 }
+div {
+  border: 0.5px solid red;
+}
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
