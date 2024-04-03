@@ -3,7 +3,7 @@ import reactImage from './../../assets/react.svg'
 
 const Spinner = () => {
   return (
-    <div className="container-fluid d-flex justify-content-center mt-5">
+    <div className="container-fluid center-flex mt-5">
       {" "}
       <img
         src={reactImage}
