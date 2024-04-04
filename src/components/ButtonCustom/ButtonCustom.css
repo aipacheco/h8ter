@@ -1,6 +1,7 @@
 .btn-outline-info{
-    color: rgb(46, 46, 46);
-    border: 2px solid rgba(0,255,255,1) !important
+    color: rgb(46, 46, 46) !important;
+    border: 2px solid rgba(0,255,255,1) !important;
+    background-color: aliceblue !important;
 }
 .btn-outline-info:hover{
     box-shadow: -2px 2px 1px rgba(0,255,255,1), 2px -2px 1px rgba(255,0,255,1) !important;

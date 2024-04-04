@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import "./ButtonCustom.css"
-const ButtonCustom = ({ text, onClick, activate=true }) => {
+const ButtonCustom = ({ text, handleSubmit, isFormComplete}) => {
   return (
     <div className="center-flex m-3">
       <button
         type="button"
         className="btn btn-outline-info"
-        onClick={onClick}
-        disabled={!activate}
+        onClick={handleSubmit}
+        disabled={!isFormComplete}
       >
         {text}
       </button>

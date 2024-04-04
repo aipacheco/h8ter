@@ -53,6 +53,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log("en el submit")
     setLoading(true)
     try {
       const userRegister = await RegisterUser(user)
@@ -104,9 +105,7 @@ const Register = () => {
                     {/* contenedor derecha */}
                     <div className="col-md-6 order-md-2">
                       <div className="container center-flex">
-                        <h1 className="center-flex text-center">
-                          Registro
-                        </h1>
+                        <h1 className="center-flex text-center">Registro</h1>
                       </div>
                     </div>
                     {/* contenedor izquierda */}

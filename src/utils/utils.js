@@ -3,7 +3,7 @@ export const validator = (value, type) => {
   const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
 
   switch (type) {
-    case "first_name": {
+    case "username": {
       if (!regexString.test(value)) {
         return `El nombre tiene que estar formado por caracteres correctos (de la A a la Z).`
       }
