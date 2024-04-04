@@ -126,20 +126,24 @@ const Login = () => {
                 ) : (
                   <div className="container">
                     <div className="col-12 p-5">
-                      <InputCustom
-                        label={"Email"}
-                        type={"email"}
-                        name={"email"}
-                        handleChange={handleChange}
-                      />
-                      <div className="error">{userError.emailError}</div>
-                      <InputCustom
-                        label={"Contraseña"}
-                        type={"password"}
-                        name={"password"}
-                        handleChange={handleChange}
-                      />
-                      <div className="error">{userError.passwordError}</div>
+                      <div className="input-container">
+                        <InputCustom
+                          label={"Email"}
+                          type={"email"}
+                          name={"email"}
+                          handleChange={handleChange}
+                        />
+                        <div className="error">{userError.emailError}</div>{" "}
+                      </div>
+                      <div className="input-container">
+                        <InputCustom
+                          label={"Contraseña"}
+                          type={"password"}
+                          name={"password"}
+                          handleChange={handleChange}
+                        />
+                        <div className="error">{userError.passwordError}</div>{" "}
+                      </div>
                       {alert && (
                         <div className="center-flex mt-3">
                           <AlertCustom
