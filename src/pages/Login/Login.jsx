@@ -102,81 +102,72 @@ const Login = () => {
 
   return (
     <>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <>
-          {alert ? (
-            <div className="d-flex justify-content-center mt-3">
-              <AlertCustom
-                className={stateMessage.className}
-                message={stateMessage.message}
-              />
+      <div className="centered-container">
+        <div className="container">
+          <div className="row">
+            {/* contenedor izquierda */}
+            <div className="col-md-6 order-md-1">
+              <div className="container center-flex">
+                <h1 className="center-flex text-center">Login</h1>
+              </div>
             </div>
-          ) : (
-            <div className="centered-container">
-              <div className="container">
-                <div className="row">
-                  {/* contenedor izquierda */}
-                  <div className="col-md-6 order-md-1">
-                    <div className="container center-flex">
-                      <h1 className="center-flex text-center">Login</h1>
-                    </div>
+            {/* contenedor derecha */}
+            <div className="col-md-6 order-md-2">
+              <div className="row">
+                {loading ? (
+                  <Spinner />
+                ) : alert ? (
+                  <div className="d-flex justify-content-center mt-3">
+                    <AlertCustom
+                      className={stateMessage.className}
+                      message={stateMessage.message}
+                    />
                   </div>
-                  {/* contenedor derecha */}
-                  <div className="col-md-6 order-md-2">
-                    <div className="row">
-                      <div className="container">
-                        <div className="col-12 p-5">
-                        <InputCustom
-                              label={"Email"}
-                              type={"email"}
-                              name={"email"}
-                              handleChange={handleChange}
-                            />
-                            <div className="error">{userError.emailError}</div>
-                            <InputCustom
-                              label={"Contraseña"}
-                              type={"password"}
-                              name={"password"}
-                              handleChange={handleChange}
-                            />
-                            <div className="error">
-                              {userError.passwordError}
-                            </div>
-                          {alert && (
-                            <div className="center-flex mt-3">
-                              <AlertCustom
-                                className={stateMessage.className}
-                                message={stateMessage.message}
-                              />
-                            </div>
-                          )}
-                          <ButtonCustom
-                            text={"Login"}
-                            handleSubmit={handleSubmit}
-                            isFormComplete={isFormComplete}
+                ) : (
+                  <div className="container">
+                    <div className="col-12 p-5">
+                      <InputCustom
+                        label={"Email"}
+                        type={"email"}
+                        name={"email"}
+                        handleChange={handleChange}
+                      />
+                      <div className="error">{userError.emailError}</div>
+                      <InputCustom
+                        label={"Contraseña"}
+                        type={"password"}
+                        name={"password"}
+                        handleChange={handleChange}
+                      />
+                      <div className="error">{userError.passwordError}</div>
+                      {alert && (
+                        <div className="center-flex mt-3">
+                          <AlertCustom
+                            className={stateMessage.className}
+                            message={stateMessage.message}
                           />
-                          <div className="login-question">
-                            <AlertCustom
-                              className={"light text-center"}
-                              message="¿No tienes cuenta? Regístrate para acceder"
-                            />
-                            <LinkButton
-                              direction={"/register"}
-                              text={"Registro"}
-                            />
-                          </div>
                         </div>
+                      )}
+                      <ButtonCustom
+                        text={"Login"}
+                        handleSubmit={handleSubmit}
+                        isFormComplete={isFormComplete}
+                      />
+                      <div className="login-question">
+                        <AlertCustom
+                          className={"light text-center"}
+                          message="¿No tienes cuenta? Regístrate para acceder"
+                        />
+                        <LinkButton direction={"/register"} text={"Registro"} />
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
-          )}
-        </>
-      )}
+          </div>
+        </div>
+      </div>
     </>
   )
 }

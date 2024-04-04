@@ -3,7 +3,7 @@ import Bolt from './../../assets/Bolt.svg'
 
 const Spinner = () => {
   return (
-    <div className="container-fluid center-flex mt-5">
+    <div className="center-flex">
       {" "}
       <img
         src={Bolt}
