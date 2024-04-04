@@ -104,7 +104,7 @@ const Login = () => {
     <>
       <div className="centered-container">
         <div className="container">
-          <div className="row">
+          <div className="row row-login">
             {/* contenedor izquierda */}
             <div className="col-md-6 order-md-1">
               <div className="container center-flex">

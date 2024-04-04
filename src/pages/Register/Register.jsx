@@ -87,7 +87,7 @@ const Register = () => {
     <>
       <div className="centered-container">
         <div className="container">
-          <div className="row">
+          <div className="row row-register">
             {/* contenedor derecha */}
             <div className="col-md-6 order-md-2">
               <div className="container center-flex">
