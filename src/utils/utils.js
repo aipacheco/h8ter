@@ -50,3 +50,4 @@ export const CheckForm = (state) => {
 export const checkAllEmpty = (obj) => {
   return Object.values(obj).every((value) => value === "")
 }
+

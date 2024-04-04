@@ -1,12 +1,12 @@
 #root {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 100%;
   font-family: "Montserrat", sans-serif;
 }
-/* div {
+div {
   border: 0.5px solid red;
-} */
+}
 .center-flex {
   display: flex;
   justify-content: center;
