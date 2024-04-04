@@ -1,4 +1,4 @@
-const URL = "https://rrss-dev-fkcm.2.ie-1.fl0.io/api"
+const URL = "https://h8ter.zeabur.app/api"
 
 export const RegisterUser = async (user) => {
   try {

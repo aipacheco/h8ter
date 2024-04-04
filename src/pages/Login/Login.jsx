@@ -128,20 +128,22 @@ const Login = () => {
                     <div className="row">
                       <div className="container">
                         <div className="col-12 p-5">
-                          <InputCustom
-                            label={"Email"}
-                            type={"email"}
-                            name={"email"}
-                            handleChange={handleChange}
-                          />
-                          <div className="error">{userError.emailError}</div>
-                          <InputCustom
-                            label={"Contraseña"}
-                            type={"password"}
-                            name={"password"}
-                            handleChange={handleChange}
-                          />
-                          <div className="error">{userError.passwordError}</div>
+                        <InputCustom
+                              label={"Email"}
+                              type={"email"}
+                              name={"email"}
+                              handleChange={handleChange}
+                            />
+                            <div className="error">{userError.emailError}</div>
+                            <InputCustom
+                              label={"Contraseña"}
+                              type={"password"}
+                              name={"password"}
+                              handleChange={handleChange}
+                            />
+                            <div className="error">
+                              {userError.passwordError}
+                            </div>
                           {alert && (
                             <div className="center-flex mt-3">
                               <AlertCustom
@@ -151,18 +153,18 @@ const Login = () => {
                             </div>
                           )}
                           <ButtonCustom
-                            text={"Registrarse"}
+                            text={"Login"}
                             handleSubmit={handleSubmit}
-                            activate={isFormComplete}
+                            isFormComplete={isFormComplete}
                           />
                           <div className="login-question">
                             <AlertCustom
                               className={"light text-center"}
-                              message="¿Ya tienes cuenta? Ve a Login para acceder"
+                              message="¿No tienes cuenta? Regístrate para acceder"
                             />
                             <LinkButton
-                              direction={"/login"}
-                              text={"Ir a login"}
+                              direction={"/register"}
+                              text={"Registro"}
                             />
                           </div>
                         </div>
