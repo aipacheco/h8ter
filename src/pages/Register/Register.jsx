@@ -53,7 +53,6 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("en el submit")
     setLoading(true)
     try {
       const userRegister = await RegisterUser(user)
@@ -86,93 +85,80 @@ const Register = () => {
 
   return (
     <>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <>
-          {alert ? (
-            <div className="center-flex mt-3">
-              <AlertCustom
-                className={stateMessage.className}
-                message={stateMessage.message}
-              />
+      <div className="centered-container">
+        <div className="container">
+          <div className="row">
+            {/* contenedor derecha */}
+            <div className="col-md-6 order-md-2">
+              <div className="container center-flex">
+                <h1 className="center-flex text-center">Registro</h1>
+              </div>
             </div>
-          ) : (
-            <>
-              <div className="centered-container">
-                <div className="container">
-                  <div className="row">
-                    {/* contenedor derecha */}
-                    <div className="col-md-6 order-md-2">
-                      <div className="container center-flex">
-                        <h1 className="center-flex text-center">Registro</h1>
-                      </div>
-                    </div>
-                    {/* contenedor izquierda */}
-                    <div className="col-md-6 order-md-1">
-                      <div className="row">
-                        <div className="container">
-                          <div className="col-12 p-5">
-                            <InputCustom
-                              label={"Nombre de usuario"}
-                              type={"text"}
-                              name={"username"}
-                              handleChange={handleChange}
-                            />
-                            <div className="error">
-                              {userError.usernameError}
-                            </div>
+            {/* contenedor izquierda */}
+            <div className="col-md-6 order-md-1">
+              <div className="row">
+                {loading ? (
+                  <Spinner />
+                ) : alert ? (
+                  <div className="d-flex justify-content-center mt-3">
+                    <AlertCustom
+                      className={stateMessage.className}
+                      message={stateMessage.message}
+                    />
+                  </div>
+                ) : (
+                  <div className="container">
+                    <div className="col-12 p-5">
+                      <InputCustom
+                        label={"Nombre de usuario"}
+                        type={"text"}
+                        name={"username"}
+                        handleChange={handleChange}
+                      />
+                      <div className="error">{userError.usernameError}</div>
 
-                            <InputCustom
-                              label={"Email"}
-                              type={"email"}
-                              name={"email"}
-                              handleChange={handleChange}
-                            />
-                            <div className="error">{userError.emailError}</div>
-                            <InputCustom
-                              label={"Contraseña"}
-                              type={"password"}
-                              name={"password"}
-                              handleChange={handleChange}
-                            />
-                            <div className="error">
-                              {userError.passwordError}
-                            </div>
-                            {alert && (
-                              <div className="center-flex mt-3">
-                                <AlertCustom
-                                  className={stateMessage.className}
-                                  message={stateMessage.message}
-                                />
-                              </div>
-                            )}
-                            <ButtonCustom
-                              text={"Registrarse"}
-                              handleSubmit={handleSubmit}
-                              isFormComplete={isFormComplete}
-                            />
-                            <div className="login-question">
-                              <AlertCustom
-                                className={"light text-center"}
-                                message="¿Ya tienes cuenta? Ve a Login para acceder"
-                              />
-                              <LinkButton
-                                direction={"/login"}
-                                text={"Ir a login"}
-                              />
-                            </div>
-                          </div>
+                      <InputCustom
+                        label={"Email"}
+                        type={"email"}
+                        name={"email"}
+                        handleChange={handleChange}
+                      />
+                      <div className="error">{userError.emailError}</div>
+                      <InputCustom
+                        label={"Contraseña"}
+                        type={"password"}
+                        name={"password"}
+                        handleChange={handleChange}
+                      />
+                      <div className="error">{userError.passwordError}</div>
+                      {alert && (
+                        <div className="center-flex mt-3">
+                          <AlertCustom
+                            className={stateMessage.className}
+                            message={stateMessage.message}
+                          />
                         </div>
+                      )}
+                      <ButtonCustom
+                        text={"Registrarse"}
+                        handleSubmit={handleSubmit}
+                        isFormComplete={isFormComplete}
+                      />
+                      <div className="login-question">
+                        <AlertCustom
+                          className={"light text-center"}
+                          message="¿Ya tienes cuenta? Ve a Login para acceder"
+                        />
+                        <LinkButton direction={"/login"} text={"Ir a login"} />
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
-            </>
-          )}
-        </>
-      )}
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
