@@ -27,7 +27,7 @@ const Fabicon = ({ scrollToTop }) => {
         className="fab-button"
         onClick={scrollToTop}
         aria-label="add"
-        style={{ position: "fixed", bottom: 20, right: 20 }}
+        style={{ position: "fixed", bottom: 100, right: 30 }}
       >
         <KeyboardDoubleArrowUpIcon />
       </Fab>

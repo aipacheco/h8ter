@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "./pages/Home/Home"
 import Register from "./pages/Register/Register"
 import Login from "./pages/Login/Login"
+import Footer from "./components/Footer/Footer"
 
 export const Layout = () => {
   /*una ruta se compone de una dirección y unos params, por ejemplo en editcontact le estamos pasando un id, 
@@ -19,7 +20,7 @@ export const Layout = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </BrowserRouter>
     </div>
   )

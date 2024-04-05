@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { GetPosts } from "../../services/services"
+import { GetPosts } from "../../services/postServices"
 import PostCard from "../../components/PostCard/PostCard"
 import Fabicon from "../../components/FabIcon/FabIcon"
 
