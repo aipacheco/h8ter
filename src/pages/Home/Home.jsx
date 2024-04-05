@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { GetPosts } from "../../services/services"
 import PostCard from "../../components/PostCard/PostCard"
+import Fabicon from "../../components/FabIcon/FabIcon"
+
 
 const Home = () => {
   const [loading, setLoading] = useState(false)
@@ -11,7 +13,6 @@ const Home = () => {
   //función para el botón de volver hacia arriba
   const handleScroll = () => {
     if (window.pageYOffset > 500) {
-      console.log("que hase primo")
       setShowScrollButton(true)
     } else {
       setShowScrollButton(false)
@@ -54,6 +55,7 @@ const Home = () => {
 
   return (
     <>
+   
       <div className="row m-0 p-0">
         <div className="col-md-3 col-lg-3 order-md-1">
           <div className="container sticky-top">
@@ -73,18 +75,12 @@ const Home = () => {
           </div>
         </div>
         {showScrollButton && (
-          <div
-            className="go-top-container sticky-top text-end p-5 mr-5"
-            onClick={scrollToTop}
-          >
-            <div className="go-top-button">
-              <i className="material-symbols-outlined">
-                keyboard_double_arrow_up
-              </i>
-            </div>
+          <div>
+         <Fabicon scrollToTop={scrollToTop} />
           </div>
         )}
       </div>
+
     </>
   )
 }
