@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Fab from "@mui/material/Fab";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import { createTheme, ThemeProvider } from "@mui/material/styles";

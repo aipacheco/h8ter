@@ -1,5 +1,18 @@
-.column {
+
+
+/* .sidebar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 25em !important; 
+  height: 100vh !important; 
+} */
+
+.content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+
 }

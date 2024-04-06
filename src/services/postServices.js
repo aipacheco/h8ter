@@ -1,3 +1,5 @@
+const URL = "https://h8ter.zeabur.app/api"
+
 export const GetPosts = async () =>{
     try {
       const response = await fetch(`${URL}/posts`, {

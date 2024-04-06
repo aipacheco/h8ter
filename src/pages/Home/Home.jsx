@@ -1,8 +1,9 @@
+import "./Home.css"
 import { useEffect, useState } from "react"
 import { GetPosts } from "../../services/postServices"
 import PostCard from "../../components/PostCard/PostCard"
 import Fabicon from "../../components/FabIcon/FabIcon"
-
+import Sidebar from "../../components/Sidebar/Sidebar"
 
 const Home = () => {
   const [loading, setLoading] = useState(false)
@@ -55,32 +56,26 @@ const Home = () => {
 
   return (
     <>
-   
-      <div className="row m-0 p-0">
-        <div className="col-md-3 col-lg-3 order-md-1">
-          <div className="container sticky-top">
-            <h1 className="center-flex text-center">Barra lateral</h1>
-          </div>
+      <div className="container d-flex">
+        <div className="sidebar">
+          <Sidebar />
         </div>
+        <div className="content">
+          {posts.map((post, index) => (
+            <PostCard
+              key={index}
+              content={post.content}
+              publishedAt={post.publishedAt}
+            />
+          ))}
 
-        <div className="col-md-8 col-lg-8 order-md-2">
-          <div className="column">
-            {posts.map((post, index) => (
-              <PostCard
-                key={index}
-                content={post.content}
-                publishedAt={post.publishedAt}
-              />
-            ))}
-          </div>
+          {showScrollButton && (
+            <div>
+              <Fabicon scrollToTop={scrollToTop} />
+            </div>
+          )}
         </div>
-        {showScrollButton && (
-          <div>
-         <Fabicon scrollToTop={scrollToTop} />
-          </div>
-        )}
       </div>
-
     </>
   )
 }

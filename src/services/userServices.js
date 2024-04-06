@@ -34,3 +34,20 @@ export const LoginUser = async (user) => {
     throw error
   }
 }
+
+export const GetMyProfile = async () => {
+  try {
+    const response = await fetch(`${URL}/users/profile`, {
+      method: "GET",
+      redirect: "follow",
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
