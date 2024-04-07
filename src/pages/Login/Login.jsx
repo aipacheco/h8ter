@@ -104,7 +104,7 @@ const Login = () => {
     <>
       <div className="centered-container">
         <div className="container">
-          <div className="row row-login">
+          <div className="row row-login p-2">
             {/* contenedor izquierda */}
             <div className="col-md-6 order-md-1">
               <div className="container center-flex">
@@ -125,7 +125,7 @@ const Login = () => {
                   </div>
                 ) : (
                   <div className="container">
-                    <div className="col-12 p-5">
+                    <div className="col-12 mb-5 mt-2">
                       <div className="input-container">
                         <InputCustom
                           label={"Email"}
@@ -157,7 +157,7 @@ const Login = () => {
                         handleSubmit={handleSubmit}
                         isFormComplete={isFormComplete}
                       />
-                      <div className="login-question">
+                      <div className="login-question mt-2">
                         <AlertCustom
                           className={"light text-center"}
                           message="¿No tienes cuenta? Regístrate para acceder"

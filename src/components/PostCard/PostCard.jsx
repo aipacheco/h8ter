@@ -2,7 +2,7 @@
 const PostCard = ({ content, publishedAt }) => {
   return (
     
-      <div className="container">
+      <div className="container mt-3">
         <div className="card card-post">
           <div className="card-body">   
               <div className="col-12">

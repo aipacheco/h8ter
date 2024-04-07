@@ -8,7 +8,6 @@ import Sidebar from "../../components/Sidebar/Sidebar"
 const Home = () => {
   const [loading, setLoading] = useState(false)
   const [posts, setPosts] = useState([])
-  const [scrollButtonClassName, setScrollButtonClassname] = useState("")
   const [showScrollButton, setShowScrollButton] = useState(false)
 
   //función para el botón de volver hacia arriba
@@ -56,25 +55,21 @@ const Home = () => {
 
   return (
     <>
-      <div className="container d-flex">
-        <div className="sidebar">
-          <Sidebar />
-        </div>
-        <div className="content">
-          {posts.map((post, index) => (
-            <PostCard
-              key={index}
-              content={post.content}
-              publishedAt={post.publishedAt}
-            />
-          ))}
+      <Sidebar />
+      <div className="container container-content">
+        {posts.map((post, index) => (
+          <PostCard
+            key={index}
+            content={post.content}
+            publishedAt={post.publishedAt}
+          />
+        ))}
 
-          {showScrollButton && (
-            <div>
-              <Fabicon scrollToTop={scrollToTop} />
-            </div>
-          )}
-        </div>
+        {showScrollButton && (
+          <div>
+            <Fabicon scrollToTop={scrollToTop} />
+          </div>
+        )}
       </div>
     </>
   )
