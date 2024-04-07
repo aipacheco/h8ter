@@ -1,40 +1,45 @@
 import "./Sidebar.css"
+import { 
+  CDBSidebar,
+  CDBSidebarContent,
+  CDBSidebarHeader,
+  CDBSidebarMenu,
+  CDBSidebarMenuItem } from "cdbreact";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    // fixed-top
-    <div className="container container-side">
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+    <div
+      className={`app fixed-top`}
+      style={{ display: "flex", height: "100%", overflow: "scroll initial" }}
+    >
+      <CDBSidebar textColor="#2e2e2e" backgroundColor="#f0f8ff">
+        <CDBSidebarHeader >
+          <a
+            href="/"
+            className="text-decoration-none"
+            style={{ color: "inherit" }}
           >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+            Contrast
+          </a>
+        </CDBSidebarHeader>
 
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-column">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
-              </li>
+        <CDBSidebarContent className="sidebar-content ">
+          <CDBSidebarMenu>
+            <NavLink exact to="/" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="columns">dashboard</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/tables" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="table">tables</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/profile" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="user">profile</CDBSidebarMenuItem>
+            </NavLink>
 
-            </ul>
-          </div>
-        </div>
-      </nav>
+          </CDBSidebarMenu>
+          <CDBSidebarMenu></CDBSidebarMenu>
+        </CDBSidebarContent>
+      </CDBSidebar>
     </div>
   )
 }

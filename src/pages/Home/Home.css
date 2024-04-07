@@ -9,10 +9,13 @@
   height: 100vh !important; 
 } */
 
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+@media screen and (min-width: 1024px) {
+  .container-content {
+    margin-left: 18em !important;
+  }
+}
+@media screen and (max-width: 370px) {
+  .container-content {
+    padding-left: 4em !important;
+  }
 }
