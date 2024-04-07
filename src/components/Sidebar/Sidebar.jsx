@@ -13,15 +13,9 @@ const Sidebar = () => {
       className={`app fixed-top`}
       style={{ display: "flex", height: "100%", overflow: "scroll initial" }}
     >
-      <CDBSidebar textColor="#2e2e2e" backgroundColor="#f0f8ff">
+      <CDBSidebar textColor="#2e2e2e" backgroundColor="">
         <CDBSidebarHeader >
-          <a
-            href="/"
-            className="text-decoration-none"
-            style={{ color: "inherit" }}
-          >
-            Contrast
-          </a>
+
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content ">

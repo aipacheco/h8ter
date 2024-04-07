@@ -5,7 +5,7 @@ import "./LinkButton.css"
 export const LinkButton = ({ direction, text }) => {
   return (
     <div>
-      <div className="center-flex m-3">
+      <div className="center-flex">
         <Link to={`${direction}`}>
           <button id="link-button" className="btn btn-outline-danger">
             {text}

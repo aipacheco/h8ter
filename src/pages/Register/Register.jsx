@@ -87,7 +87,7 @@ const Register = () => {
     <>
       <div className="centered-container">
         <div className="container">
-          <div className="row row-register">
+          <div className="row row-register p-2">
             {/* contenedor derecha */}
             <div className="col-md-6 order-md-2">
               <div className="container center-flex">
@@ -108,7 +108,7 @@ const Register = () => {
                   </div>
                 ) : (
                   <div className="container">
-                    <div className="col-12 p-5">
+                    <div className="col-12 mb-5 mt-2">
                       <div className="input-container">
                         <InputCustom
                           label={"Nombre de usuario"}
@@ -149,7 +149,7 @@ const Register = () => {
                         handleSubmit={handleSubmit}
                         isFormComplete={isFormComplete}
                       />
-                      <div className="login-question">
+                      <div className="login-question mt-2">
                         <AlertCustom
                           className={"light text-center"}
                           message="¿Ya tienes cuenta? Ve a Login para acceder"

@@ -2,7 +2,7 @@
 import "./ButtonCustom.css"
 const ButtonCustom = ({ text, handleSubmit, isFormComplete}) => {
   return (
-    <div className="center-flex m-3">
+    <div className="center-flex">
       <button
         type="button"
         className="btn btn-outline-info"

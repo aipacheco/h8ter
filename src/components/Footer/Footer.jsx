@@ -6,7 +6,7 @@ const Footer = () => {
     //pendiente: lógica del componente para no mostrarse si el user tiene token
 
   return (
-    <nav className="navbar bg-body-secondary fixed-bottom mt-5">
+    <nav className="navbar bg-body-secondary fixed-bottom">
       <div className="container justify-content-center">
         <LinkButton direction={"/login"} text={"Login"} />
         O
