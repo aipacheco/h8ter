@@ -1,7 +1,8 @@
+import "./Navbar.css"
 const Navbar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-secondary sticky-top">
+      <nav className="navbar navbar-expand-lg bg-body-secondary sticky-top ">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Navbar

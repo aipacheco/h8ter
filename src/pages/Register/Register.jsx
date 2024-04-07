@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import InputCustom from "../../components/InputCustom/InputCustom"
-import { RegisterUser } from "../../services/userServices"
+import { RegisterUser } from "../../services/authServices"
 import "./Register.css"
 import { useEffect, useState } from "react"
 import Spinner from "../../components/Spinner/Spinner"

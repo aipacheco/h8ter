@@ -5,9 +5,11 @@ import storage from "redux-persist/lib/storage"
 import { persistReducer, persistStore } from "redux-persist"
 //para encriptar
 import { thunk } from "redux-thunk"
+import userSlice from "./userSlice"
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  user: userSlice
   // añadir más reducers si los hay
 })
 
@@ -15,7 +17,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"],
+  whitelist: ["auth", "user"],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

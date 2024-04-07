@@ -4,15 +4,15 @@ import Register from "./pages/Register/Register"
 import Login from "./pages/Login/Login"
 import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar/Navbar"
+import Profile from "./pages/Profile/Profile"
 
 
 export const Layout = () => {
-  /*una ruta se compone de una dirección y unos params, por ejemplo en editcontact le estamos pasando un id, 
-  lo recogemos en el link del boton de modificar en el componente contacts.jsx
+  /*una ruta se compone de una dirección y unos params, por ejemplo en profile le estamos pasando un username, 
   -un param se declara poniendo : y detrás el nombre del param - */
 
   return (
-    <div>
+    <>
       <BrowserRouter>
         <Navbar />
 
@@ -20,10 +20,12 @@ export const Layout = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/:username" element={<Profile />} />
+
         </Routes>
 
         <Footer />
       </BrowserRouter>
-    </div>
+    </>
   )
 }

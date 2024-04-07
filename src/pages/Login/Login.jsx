@@ -3,13 +3,14 @@ import InputCustom from "../../components/InputCustom/InputCustom"
 import "./Login.css"
 import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
 import { useNavigate } from "react-router-dom"
-import { LoginUser } from "../../services/userServices"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
 import LinkButton from "../../components/LinkButton/LinkButton"
 import { useDispatch } from "react-redux"
 import { setAuthToken } from "../../redux/authSlice"
 import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
 import Spinner from "../../components/Spinner/Spinner"
+import { LoginUser } from "../../services/authServices"
+import { setUserRole} from "../../redux/userSlice"
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -59,11 +60,15 @@ const Login = () => {
       const userLogged = await LoginUser(user)
       if (userLogged.success) {
         /* dispatch setea setAuthToken(la funcion del slicer) 
-        con el token y la data donde viene el role desde el back*/
+        con el token y el username que viene desde el back*/
         dispatch(
           setAuthToken({
             token: userLogged.token,
-            role: userLogged.data,
+          })        
+        )
+        dispatch(
+          setUserRole({
+            role: userLogged.role,
           })
         )
         setAlert(true)
@@ -71,13 +76,13 @@ const Login = () => {
           message: userLogged.message,
           className: "success",
         })
-        if (userLogged.data === "user") {
+        if (userLogged.role === "user") {
           setTimeout(() => {
             setAlert(false)
-            navigate("/profile")
+            navigate("/")
           }, 1200)
         }
-        if (userLogged.data === "super_admin") {
+        if (userLogged.role === "super_admin") {
           setTimeout(() => {
             setAlert(false)
             navigate("/admin")
