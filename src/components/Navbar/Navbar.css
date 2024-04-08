@@ -1,9 +1,3 @@
-.centered-navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .navbar-collapse {
-    display: flex;
-    justify-content: center;
-  }
+general-nav{
+  background-color: white !important;
+}

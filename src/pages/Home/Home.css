@@ -1,17 +1,6 @@
-
-
-/* .sidebar {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 25em !important; 
-  height: 100vh !important; 
-} */
-
 @media screen and (min-width: 371px) {
   .container-content{
-    padding-left: 8.5em !important;
+    padding-left: 10em !important;
   }
 }
 @media screen and (max-width: 370px) {

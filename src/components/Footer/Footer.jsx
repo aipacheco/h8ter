@@ -7,9 +7,9 @@ const Footer = () => {
 
   return (
     <nav className="navbar bg-body-secondary fixed-bottom">
-      <div className="container justify-content-center">
+      <div className="container justify-content-around">
         <LinkButton direction={"/login"} text={"Login"} />
-        O
+       
         <LinkButton direction={"/register"} text={"Registrate"} />
       </div>
     </nav>
