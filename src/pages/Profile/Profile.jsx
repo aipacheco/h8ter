@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { GetProfile } from "../../services/userServices"
+import ProfileCard from "../../components/ProfileCard/ProfileCard"
+import Sidebar from "../../components/Sidebar/Sidebar"
 
 const Profile = () => {
   const token = useSelector((state) => state.auth.token)
@@ -37,7 +39,14 @@ const Profile = () => {
 
   console.log(profile)
 
-  return <div></div>
+  return (
+    <>
+      <Sidebar />
+      <div className="container container-content">
+        <ProfileCard avatar={profile.avatar} banner={profile.banner} />
+      </div>
+    </>
+  )
 }
 
 export default Profile

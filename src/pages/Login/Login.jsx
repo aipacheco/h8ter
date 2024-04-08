@@ -10,7 +10,7 @@ import { setAuthToken } from "../../redux/authSlice"
 import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
 import Spinner from "../../components/Spinner/Spinner"
 import { LoginUser } from "../../services/authServices"
-import { setUserRole} from "../../redux/userSlice"
+import { decodeToken } from "react-jwt";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -61,28 +61,25 @@ const Login = () => {
       if (userLogged.success) {
         /* dispatch setea setAuthToken(la funcion del slicer) 
         con el token y el username que viene desde el back*/
+        const decode = decodeToken(userLogged.token)
         dispatch(
           setAuthToken({
             token: userLogged.token,
+            decode: decode
           })        
-        )
-        dispatch(
-          setUserRole({
-            role: userLogged.role,
-          })
         )
         setAlert(true)
         setStateMessage({
           message: userLogged.message,
           className: "success",
         })
-        if (userLogged.role === "user") {
+        if (decode.role === "user") {
           setTimeout(() => {
             setAlert(false)
-            navigate("/")
+            navigate(`/${decode.username}`)
           }, 1200)
         }
-        if (userLogged.role === "super_admin") {
+        if (decode.role === "super_admin") {
           setTimeout(() => {
             setAlert(false)
             navigate("/admin")

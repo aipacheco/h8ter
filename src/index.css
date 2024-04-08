@@ -27,6 +27,6 @@ h1{
 }
 a{
   text-decoration: none !important;
-  cursor: pointer;
+  cursor: pointer !important;
   color: #2e2e2e !important;
 }

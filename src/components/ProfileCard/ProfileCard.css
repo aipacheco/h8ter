@@ -1,0 +1,27 @@
+.jumbotron {
+  height: 25em;
+  width: auto;
+  border: none;
+  box-shadow: 0px 1px 1px #000000
+}
+.jumbotron .card-img {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+ ;
+}
+.jumbotron .card-title {
+  /* font-family: "Sedgwick Ave", cursive;
+    font-size: 7em; */
+  color: rgb(10, 0, 30);
+  text-shadow: 2px 2px 2px rgba(196, 196, 196, 0.804);
+}
+
+.avatar-img {
+  border-radius: 50%;
+  width: 15em;
+  height: 15em;
+  object-fit: cover;
+  margin-top: 13em;
+  box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.8);
+}

@@ -18,7 +18,9 @@ const Home = () => {
       setShowScrollButton(false)
     }
   }
-
+  const handleClick = () => {
+    console.log("hola")
+  }
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -52,15 +54,16 @@ const Home = () => {
   useEffect(() => {
     fetchPosts()
   }, [])
-
+  // console.log(posts)
   return (
     <>
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="container container-content">
         {posts.map((post, index) => (
           <PostCard
             key={index}
             content={post.content}
+            username={post.authorUsername}
             publishedAt={post.publishedAt}
           />
         ))}
