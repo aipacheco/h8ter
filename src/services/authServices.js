@@ -1,8 +1,8 @@
-const URL = "https://h8ter.zeabur.app/api"
+const URL = "https://h8ter.zeabur.app/api/auth"
 
 export const RegisterUser = async (user) => {
   try {
-    const response = await fetch(`${URL}/auth/register`, {
+    const response = await fetch(`${URL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
@@ -19,7 +19,7 @@ export const RegisterUser = async (user) => {
 }
 export const LoginUser = async (user) => {
   try {
-    const response = await fetch(`${URL}/auth/login`, {
+    const response = await fetch(`${URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
