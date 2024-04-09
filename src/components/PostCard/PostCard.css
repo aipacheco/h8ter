@@ -1,3 +1,10 @@
 .card-post{
+    display:flex;
+    flex-direction: row;
     width: 80% !important; 
 }
+.avatar-container {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+  }

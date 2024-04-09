@@ -66,6 +66,7 @@ const Home = () => {
               content={post.content}
               username={post.authorUsername}
               publishedAt={post.publishedAt}
+              avatar={post.avatar}
             />
           ))}
 
