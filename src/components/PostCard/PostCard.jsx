@@ -20,8 +20,8 @@ const PostCard = ({
   const token = useSelector((state) => state.auth.token)
   const [like, setLike] = useState([likes])
   const [userHasLiked, setUserHasLiked] = useState(false)
-  const formattedDateTime = format(publishedAt, "dd-MM-yyyy HH:mm:ss")
-  const [iconColor, setIconColor] = useState("action")
+  const formattedDateTime = format(publishedAt, "dd/MM/yyyy HH:mm")
+  const [iconColor, setIconColor] = useState("disabled")
 
   /*usamos el useEffect para que al cargar el componente se compuebe 
   si el usuario ha dado like previamente al post y pintarlo de otro color 
@@ -31,7 +31,7 @@ const PostCard = ({
   useEffect(() => {
     setUserHasLiked(hasLiked)
     if (hasLiked) {
-      setIconColor("primary")
+      setIconColor("secondary")
     }
   }, [likes, userLoggedId, hasLiked])
 
@@ -39,13 +39,13 @@ const PostCard = ({
     //se cambia el color y el estado antes de la llamada
     setUserHasLiked(!userHasLiked)
     //ternaria para cambiar el color del icono
-    setIconColor(userHasLiked ? "action" : "primary") 
+    setIconColor(userHasLiked ? "disabled" : "secondary") 
     try {
       await Like(id, token)
     } catch (error) {
       // si falla
       setUserHasLiked(userHasLiked) 
-      setIconColor(!userHasLiked ? "action" : "primary") 
+      setIconColor(!userHasLiked ? "disabled" : "secondary") 
     }
   }
 
