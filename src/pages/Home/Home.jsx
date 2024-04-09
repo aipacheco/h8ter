@@ -18,9 +18,9 @@ const Home = () => {
       setShowScrollButton(false)
     }
   }
-  const handleClick = () => {
-    console.log("hola")
-  }
+  // const handleClick = () => {
+  //   console.log("hola")
+  // }
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -57,22 +57,24 @@ const Home = () => {
   // console.log(posts)
   return (
     <>
-      {/* <Sidebar /> */}
-      <div className="container container-content">
-        {posts.map((post, index) => (
-          <PostCard
-            key={index}
-            content={post.content}
-            username={post.authorUsername}
-            publishedAt={post.publishedAt}
-          />
-        ))}
+      <div className="row flex-nowrap p-0 m-0">
+        <Sidebar />
+        <div className="col-10 col-md-10 col-lg-10">
+          {posts.map((post, index) => (
+            <PostCard
+              key={index}
+              content={post.content}
+              username={post.authorUsername}
+              publishedAt={post.publishedAt}
+            />
+          ))}
 
-        {showScrollButton && (
-          <div>
-            <Fabicon scrollToTop={scrollToTop} />
-          </div>
-        )}
+          {showScrollButton && (
+            <div>
+              <Fabicon scrollToTop={scrollToTop} />
+            </div>
+          )}
+        </div>
       </div>
     </>
   )

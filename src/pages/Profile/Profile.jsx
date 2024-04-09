@@ -41,10 +41,13 @@ const Profile = () => {
 
   return (
     <>
-      <Sidebar />
-      <div className="container container-content">
-        <ProfileCard avatar={profile.avatar} banner={profile.banner} />
-      </div>
+
+        <div className="row flex-nowrap p-0 m-0">
+          <Sidebar />
+
+          <ProfileCard avatar={profile.avatar} banner={profile.banner} />
+        </div>
+     
     </>
   )
 }
