@@ -37,7 +37,7 @@ const Profile = () => {
     // }
   }, [token])
 
-  console.log(profile)
+
 
   return (
     <>

@@ -1,14 +1,18 @@
 import "./Home.css"
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { GetPosts } from "../../services/postServices"
 import PostCard from "../../components/PostCard/PostCard"
 import Fabicon from "../../components/FabIcon/FabIcon"
 import Sidebar from "../../components/Sidebar/Sidebar"
 
 const Home = () => {
+  const decode = useSelector((state) => state.auth.decode)
   const [loading, setLoading] = useState(false)
   const [posts, setPosts] = useState([])
+  const [likes, setLikes] = useState([])
   const [showScrollButton, setShowScrollButton] = useState(false)
+  const userLoggedId = decode.userId
 
   //función para el botón de volver hacia arriba
   const handleScroll = () => {
@@ -18,9 +22,6 @@ const Home = () => {
       setShowScrollButton(false)
     }
   }
-  // const handleClick = () => {
-  //   console.log("hola")
-  // }
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -38,7 +39,8 @@ const Home = () => {
 
   useEffect(() => {
     fetchPosts()
-  }, [])
+    setLikes(posts.likes)
+  }, [likes, posts.likes])
 
   const fetchPosts = async () => {
     setLoading(true)
@@ -50,23 +52,27 @@ const Home = () => {
     }
     setLoading(false)
   }
-
   useEffect(() => {
     fetchPosts()
   }, [])
-  // console.log(posts)
+
+
   return (
     <>
       <div className="row flex-nowrap p-0 m-0">
         <Sidebar />
         <div className="col-10 col-md-10 col-lg-10">
-          {posts.map((post, index) => (
+          {posts.map((post) => (
             <PostCard
-              key={index}
+              key={post._id}
+              id={post._id}
               content={post.content}
               username={post.authorUsername}
               publishedAt={post.publishedAt}
               avatar={post.avatar}
+              image={post.image}
+              userLoggedId={userLoggedId}
+              likes={post.likes}
             />
           ))}
 

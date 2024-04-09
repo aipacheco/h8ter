@@ -4,11 +4,11 @@ const Navbar = () => {
   return (
     <>
       <div className="bg-body-secondary nav justify-content-center mt-3 sticky-top ">
-        <li className="nav-item">
+        <div className="nav-item">
           <Link to="/" replace>
             <h1>H8</h1>
           </Link>
-        </li> 
+        </div> 
       </div>
     </>
   )
