@@ -33,4 +33,6 @@ box-shadow: 0px 1px 1px #000000;
       opacity: 1;
     }
   }
-  
+  #register-link{
+    color:rgba(255,0,255,1) !important
+  }

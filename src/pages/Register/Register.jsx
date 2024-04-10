@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import InputCustom from "../../components/InputCustom/InputCustom"
 import { RegisterUser } from "../../services/authServices"
 import "./Register.css"
@@ -108,7 +108,7 @@ const Register = () => {
                   </div>
                 ) : (
                   <div className="container">
-                    <div className="col-12 mb-5 mt-2">
+                    <div className="col-12 mb-5 mt-3">
                       <div className="input-container">
                         <InputCustom
                           label={"Nombre de usuario"}
@@ -152,9 +152,15 @@ const Register = () => {
                       <div className="login-question mt-2">
                         <AlertCustom
                           className={"light text-center"}
-                          message="¿Ya tienes cuenta? Ve a Login para acceder"
+                          message={
+                            <>
+                              ¿Ya tienes cuenta?{" "}
+                              <Link id="register-link" to="/login">
+                                Inicia sesión
+                              </Link>
+                            </>
+                          }
                         />
-                        <LinkButton direction={"/login"} text={"Ir a login"} />
                       </div>
                     </div>
                   </div>

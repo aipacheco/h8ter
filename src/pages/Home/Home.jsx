@@ -1,6 +1,5 @@
 import "./Home.css"
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
 import { GetPosts } from "../../services/postServices"
 import Footer from "../../components/Footer/Footer"
 import PostCard from "../../components/PostCard/PostCard"
@@ -13,8 +12,7 @@ const Home = () => {
   const [posts, setPosts] = useState([])
   const [likes, setLikes] = useState([])
   const [showScrollButton, setShowScrollButton] = useState(false)
-  // const userLoggedId = decode.userId
-  const token = useSelector((state) => state.auth.token)
+
   //función para el botón de volver hacia arriba
   const handleScroll = () => {
     if (window.pageYOffset > 500) {
@@ -81,17 +79,11 @@ const Home = () => {
                     likes={post.likes}
                   />
                 ))}
-            {/* </>
-          ) : (
-            <>Hola</>
-          )} */}
-
           {showScrollButton && (
             <div>
               <Fabicon scrollToTop={scrollToTop} />
             </div>
           )}
-        
         </div>
       </div>
       <Footer />

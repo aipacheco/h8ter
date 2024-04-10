@@ -23,17 +23,19 @@ const PostCard = ({
   const token = useSelector((state) => state.auth.token)
   const decode = useSelector((state) => state.auth.decode)
 
-  if(token){
-  /*usamos el useEffect para que al cargar el componente se compuebe 
+  //Hoy, en ideas de junior:
+  if (token) {
+    /*usamos el useEffect para que al cargar el componente se compuebe 
   si el usuario ha dado like previamente al post y pintarlo de otro color 
   para que se vea */
-  const hasLiked = likes.includes(decode.userId)
-  useEffect(() => {
-    setUserHasLiked(hasLiked)
-    if (hasLiked) {
-      setIconColor("secondary")
-    }
-  }, [likes, hasLiked])}
+    const hasLiked = likes.includes(decode.userId)
+    useEffect(() => {
+      setUserHasLiked(hasLiked)
+      if (hasLiked) {
+        setIconColor("secondary")
+      }
+    }, [likes, hasLiked])
+  }
 
   const handleClick = async () => {
     //se cambia el color y el estado antes de la llamada
@@ -49,17 +51,17 @@ const PostCard = ({
     }
   }
 
+  //si tiene token llamamos a handleclick y sino pues nada, para que no falle
   const maybeOnClick = token ? handleClick : undefined
   // console.log("la variable ", userHasLiked)
   // console.log("el id del post", id)
-  // console.log("el id del usuario", userLoggedId)
 
   return (
     <div className="container mt-3">
-      <div className="card card-post">
+      <div className="card card-post p-2">
         <div className="avatar-container">
           <img className="avatar-post" src={avatar} alt="avatar" />
-          <Link to={`/${username}`}>
+          <Link className="m-2" to={`/${username}`}>
             <div>{username}</div>
           </Link>
         </div>
@@ -73,13 +75,12 @@ const PostCard = ({
                 fontSize="large"
                 onClick={maybeOnClick}
               />
+              <div className="card-footer text-end mt-3">
+                {formattedDateTime}
+              </div>
             </div>
-            <p className="card-datetime"></p>
           </div>
         </div>
-      </div>
-      <div className="card-footer text-end text-body-secondary">
-        {formattedDateTime}
       </div>
     </div>
   )

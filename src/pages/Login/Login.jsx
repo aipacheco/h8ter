@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import InputCustom from "../../components/InputCustom/InputCustom"
 import "./Login.css"
 import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
 import LinkButton from "../../components/LinkButton/LinkButton"
 import { useDispatch } from "react-redux"
@@ -10,7 +10,7 @@ import { setAuthToken } from "../../redux/authSlice"
 import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
 import Spinner from "../../components/Spinner/Spinner"
 import { LoginUser } from "../../services/authServices"
-import { decodeToken } from "react-jwt";
+import { decodeToken } from "react-jwt"
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -65,8 +65,8 @@ const Login = () => {
         dispatch(
           setAuthToken({
             token: userLogged.token,
-            decode: decode
-          })        
+            decode: decode,
+          })
         )
         setAlert(true)
         setStateMessage({
@@ -127,7 +127,7 @@ const Login = () => {
                   </div>
                 ) : (
                   <div className="container">
-                    <div className="col-12 mb-5 mt-2">
+                    <div className="col-12 mb-5 mt-3">
                       <div className="input-container">
                         <InputCustom
                           label={"Email"}
@@ -162,9 +162,14 @@ const Login = () => {
                       <div className="login-question mt-2">
                         <AlertCustom
                           className={"light text-center"}
-                          message="¿No tienes cuenta? Regístrate para acceder"
+                          message={
+                            <>
+                              ¿No tienes cuenta?{" "}
+                              <Link id="login-link" to="/register">Regístrate</Link> para
+                              acceder.
+                            </>
+                          }
                         />
-                        {/* <LinkButton direction={"/register"} text={"Registro"} /> */}
                       </div>
                     </div>
                   </div>

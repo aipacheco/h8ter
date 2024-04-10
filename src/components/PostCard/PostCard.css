@@ -8,11 +8,17 @@
   width: 4em;
   height: 4em;
   border-radius: 50%;
-  border:0.1px solid rgb(224, 224, 224);
+  border: 0.1px solid rgb(224, 224, 224);
   object-fit: cover;
 }
 .css-p4wudk-MuiSvgIcon-root {
   cursor: pointer;
 }
-.css-bsqp9w-MuiSvgIcon-root{
-  cursor: pointer};
+.css-bsqp9w-MuiSvgIcon-root {
+  cursor: pointer;
+}
+
+.card-footer {
+  background-color: white;
+  border-top: none;
+}

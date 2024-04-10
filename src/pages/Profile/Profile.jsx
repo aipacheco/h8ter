@@ -24,6 +24,7 @@ const Profile = () => {
     try {
       const myProfile = await GetProfile(username)
       setProfile(myProfile.data)
+      console.log(profile)
     } catch (error) {
       console.error("Error fetching profile:", error)
     }
@@ -38,8 +39,6 @@ const Profile = () => {
     fetchProfile()
     // }
   }, [token])
-
-  console.log(profile)
 
   return (
     <>
