@@ -39,6 +39,7 @@ const Home = () => {
   useEffect(() => {
     fetchPosts()
     setLikes(posts.likes)
+ 
   }, [likes, posts.likes])
 
   const fetchPosts = async () => {
@@ -46,6 +47,7 @@ const Home = () => {
     try {
       const allPosts = await GetPosts()
       setPosts(allPosts.data)
+      // console.log(posts)
     } catch (error) {
       console.log(error)
     }

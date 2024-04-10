@@ -19,3 +19,6 @@
   background-color: white;
   border-top: none;
 }
+.post-single{
+  cursor: pointer;
+}
