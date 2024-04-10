@@ -7,7 +7,7 @@ const Sidebar = () => {
         <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2  min-vh-100 sticky-top">
           <a
             href="/"
-            className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none"
+            className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none margin-top"
           >
             <span className="fs-5 d-none d-sm-inline">Home</span>
           </a>

@@ -71,6 +71,8 @@ const PostCard = ({
             <p>{content}</p>
             <div className="icon-container">
               <BoltOutlinedIcon
+              // se aplica esta class solo si hay token para que tenga cursor pointer
+                className={token ? "clickable" : ""}
                 color={iconColor}
                 fontSize="large"
                 onClick={maybeOnClick}

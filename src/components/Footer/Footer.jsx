@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <>
       {!token && (
-        <nav className="navbar bg-body-secondary fixed-bottom">
+        <nav className="navbar bg-body-secondary fixed-bottom footer">
           <div className="container justify-content-around">
             <LinkButton direction={"/login"} text={"Login"} />
 

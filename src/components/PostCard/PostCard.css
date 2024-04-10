@@ -11,11 +11,8 @@
   border: 0.1px solid rgb(224, 224, 224);
   object-fit: cover;
 }
-.css-p4wudk-MuiSvgIcon-root {
-  cursor: pointer;
-}
-.css-bsqp9w-MuiSvgIcon-root {
-  cursor: pointer;
+.clickable{
+  cursor: pointer !important;
 }
 
 .card-footer {
