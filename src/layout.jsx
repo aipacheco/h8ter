@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "./pages/Home/Home"
 import Register from "./pages/Register/Register"
 import Login from "./pages/Login/Login"
-import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar/Navbar"
 import Profile from "./pages/Profile/Profile"
 
@@ -24,7 +23,7 @@ export const Layout = () => {
 
         </Routes>
 
-        <Footer />
+
       </BrowserRouter>
     </>
   )

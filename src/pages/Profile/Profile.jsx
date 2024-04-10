@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { GetProfile } from "../../services/userServices"
 import ProfileCard from "../../components/ProfileCard/ProfileCard"
 import Sidebar from "../../components/Sidebar/Sidebar"
+import Footer from "../../components/Footer/Footer"
+import Spinner from "../../components/Spinner/Spinner"
 
 const Profile = () => {
   const token = useSelector((state) => state.auth.token)
-  // const username = useSelector((state) => state.user.username)
+  const decode = useSelector((state) => state.auth.decode)
+
   //hay que sacar el username de los params (la barra de navegación) para pasarlo a GetProfile
   //si el usuario no existe hay que renderizar un error y un botón para volver a home
   const { username } = useParams()
 
   const [loading, setLoading] = useState(false)
   const [profile, setProfile] = useState([])
+  const navigate = useNavigate()
 
   const fetchProfile = async () => {
     setLoading(true)
@@ -27,27 +31,28 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    // if (token && role === "super_admin") {
+    // if (token && decode.role === "super_admin") {
     //   navigate("/admin")
     // }
-    // if (token && role === "user") {
+    // if (token && decode.role === "user") {
     fetchProfile()
-    // } else {
-    //   navigate("/login")
     // }
   }, [token])
 
-
+  console.log(profile)
 
   return (
     <>
-
+      {loading ? (
+        <Spinner />
+      ) : (
         <div className="row flex-nowrap p-0 m-0">
           <Sidebar />
 
           <ProfileCard avatar={profile.avatar} banner={profile.banner} />
         </div>
-     
+      )}
+      <Footer />
     </>
   )
 }

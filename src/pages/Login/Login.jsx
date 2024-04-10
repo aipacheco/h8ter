@@ -164,7 +164,7 @@ const Login = () => {
                           className={"light text-center"}
                           message="¿No tienes cuenta? Regístrate para acceder"
                         />
-                        <LinkButton direction={"/register"} text={"Registro"} />
+                        {/* <LinkButton direction={"/register"} text={"Registro"} /> */}
                       </div>
                     </div>
                   </div>
