@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "./PostCard.css"
 import { useNavigate, Link } from "react-router-dom"
-import moment from 'moment';
+import moment from "moment"
 import BoltOutlinedIcon from "@mui/icons-material/BoltOutlined"
 import { useEffect, useState } from "react"
 import { Like } from "../../services/postServices"
@@ -18,30 +18,24 @@ const PostCard = ({
 }) => {
   const [like, setLike] = useState([likes])
   const [userHasLiked, setUserHasLiked] = useState(false)
-  const formattedDateTime = moment(publishedAt).format('DD/MM/YYYY HH:mm')
+  const formattedDateTime = moment(publishedAt).format("DD/MM/YYYY HH:mm")
   const [iconColor, setIconColor] = useState("disabled")
   const navigate = useNavigate()
   const token = useSelector((state) => state.auth.token)
   const decode = useSelector((state) => state.auth.decode)
 
-  // console.log("likes detallados", likes)
-  // console.log("otras cosas 1", username)
-  // console.log("otras cosas 2", avatar)
-  // console.log("otras cosas 3, ahora más cosas", id)
   //Hoy, en ideas de junior:
   if (token) {
     /*usamos el useEffect para que al cargar el componente se compuebe 
   si el usuario ha dado like previamente al post y pintarlo de otro color 
   para que se vea */
- 
-  
-    // const hasLiked = likes.includes(decode.userId)
-    // useEffect(() => {
-    //   setUserHasLiked(hasLiked)
-    //   if (hasLiked) {
-    //     setIconColor("secondary")
-    //   }
-    // }, [likes, hasLiked])
+    const hasLiked = likes.includes(decode.userId)
+    useEffect(() => {
+      setUserHasLiked(hasLiked)
+      if (hasLiked) {
+        setIconColor("secondary")
+      }
+    }, [likes, hasLiked])
   }
 
   const handleClick = async () => {
@@ -60,8 +54,6 @@ const PostCard = ({
 
   //si tiene token llamamos a handleclick y sino pues nada, para que no falle
   const maybeOnClick = token ? handleClick : undefined
-  // console.log("la variable ", userHasLiked)
-  // console.log("el id del post", id)
 
   const postClick = () => {
     navigate(`/post/${id}`)
@@ -76,7 +68,14 @@ const PostCard = ({
             <div>{username}</div>
           </Link>
         </div>
-        {image && <img src={image} className="card-img-top" alt="" onClick={postClick}></img>}
+        {image && (
+          <img
+            src={image}
+            className="card-img-top"
+            alt=""
+            onClick={postClick}
+          ></img>
+        )}
         <div className="card-body post-single" onClick={postClick}>
           <div className="col-12">
             <p>{content}</p>

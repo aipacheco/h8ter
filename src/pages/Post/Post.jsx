@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { GetPostById } from "../../services/postServices"
-import PostCard from "../../components/PostCard/PostCard"
+import PostDetail from "../../components/PostDetail/PostDetail"
+import Spinner from "../../components/Spinner/Spinner"
 
 const Post = () => {
   const [loading, setLoading] = useState(false)
-  const [singlePost, setSinglePost] = useState({})
+  const [singlePost, setSinglePost] = useState([])
+  const [author, setAuthor] = useState([])
   const { id } = useParams()
 
   const fetchPost = async () => {
+    setLoading(true)
     try {
-      setLoading(true)
       const fetchedPost = await GetPostById(id)
-      console.log("el fetched",fetchedPost)
       setSinglePost(fetchedPost.data)
+      //seteamos a otro state porque sería undefined al acceder al author
+      setAuthor(fetchedPost.data.author)
       setLoading(false)
-      //el avatar
-      // console.log(fetchedPost.data.author.avatar)
     } catch (error) {
       setLoading(false)
       console.error("Error fetching profile:", error)
@@ -25,26 +26,30 @@ const Post = () => {
 
   useEffect(() => {
     fetchPost()
-  }, [id])
+    console.log(singlePost)
+  }, [])
 
-  // console.log(singlePost.author ? singlePost.author.avatar : 'Author not loaded')
+  const { avatar } = author
+  const { _id, content, publishedAt, image, likes } = singlePost
 
   return (
     <div>
-      {loading ?(
-        <div>Loading...</div>
-      ): (
-        <PostCard
-          key={singlePost._id}
-          id={singlePost._id}
-          content={singlePost.content}
-          username={singlePost.authorUsername}
-          publishedAt={singlePost.publishedAt}
-          avatar={singlePost.author.avatar}
-          image={singlePost.image}
-          likes={singlePost.likes}
+      {loading ? (
+        <div className="container centered-container">
+          <Spinner />
+        </div>
+      ) : (
+        <PostDetail
+          key={_id}
+          id={_id}
+          content={content}
+          // username={singlePost.authorUsername}
+          publishedAt={publishedAt}
+          avatar={avatar}
+          image={image}
+          likes={likes}
         />
-      ) }
+      )}
     </div>
   )
 }
