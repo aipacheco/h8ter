@@ -10,7 +10,7 @@ import { useSelector } from "react-redux"
 const PostDetail = (
  { content,
   publishedAt,
-//   username,
+  username,
   avatar,
   id,
   image}
@@ -59,9 +59,9 @@ const PostDetail = (
       <div className="card card-post p-2">
         <div className="avatar-container">
           <img className="avatar-post" src={avatar} alt="avatar" />
-          {/* <Link className="m-2" to={`/${username}`}>
+          <Link className="m-2" to={`/${username}`}>
             <div>{username}</div>
-          </Link> */}
+          </Link>
         </div>
         {image && (
           <img

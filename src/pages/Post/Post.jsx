@@ -29,7 +29,7 @@ const Post = () => {
     console.log(singlePost)
   }, [])
 
-  const { avatar } = author
+  const { avatar, username } = author
   const { _id, content, publishedAt, image, likes } = singlePost
 
   return (
@@ -43,7 +43,7 @@ const Post = () => {
           key={_id}
           id={_id}
           content={content}
-          // username={singlePost.authorUsername}
+          username={username}
           publishedAt={publishedAt}
           avatar={avatar}
           image={image}
