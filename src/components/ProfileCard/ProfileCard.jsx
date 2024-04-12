@@ -3,7 +3,7 @@ import "./ProfileCard.css"
 
 const ProfileCard = ({ banner, avatar }) => {
   return (
-    <div className="col-10 col-md-10 col-lg-10">
+    <div className="container">
       <div className="card jumbotron">
         <img src={"" || banner} className="card-img"/>
         <div className="card-img-overlay">

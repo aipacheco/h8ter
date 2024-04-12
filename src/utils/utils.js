@@ -33,6 +33,13 @@ export const validator = (value, type) => {
       }
       return ""
     }
+    case "content" :{
+      //si es mayor de 240 letras
+      if (value.length > 240) {
+        return `El contenido tiene que ser máximo 240 caracteres.`
+      }
+      return ""
+    }
     default:
       console.log("pues ok")
   }

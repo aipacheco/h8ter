@@ -8,6 +8,8 @@ import Spinner from "../../components/Spinner/Spinner"
 import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
 import { Modal } from "reactstrap"
 import { useSelector } from "react-redux"
+import AlertCustom from "../../components/AlertCustom/AlertCustom"
+import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
 
 const Home = () => {
   const [loading, setLoading] = useState(false)
@@ -20,7 +22,9 @@ const Home = () => {
     message: "",
     className: "",
   })
+  const [newPostError, setNewPostError] = useState({})
   const [alert, setAlert] = useState(false)
+  const [isFormComplete, setIsFormComplete] = useState(false)
   const token = useSelector((state) => state.auth.token)
   const decode = useSelector((state) => state.auth.decode)
 
@@ -57,12 +61,12 @@ const Home = () => {
     try {
       const allPosts = await GetPosts()
       setPosts(allPosts.data)
-      // console.log(posts)
     } catch (error) {
       console.log(error)
     }
     setLoading(false)
   }
+
   useEffect(() => {
     fetchPosts()
   }, [newPost])
@@ -77,10 +81,25 @@ const Home = () => {
       ...prevProfile,
       [name]: value,
     }))
+    const error = validator(target.value, target.name)
+    setNewPostError((prevState) => ({
+      ...prevState,
+      [target.name + "Error"]: error,
+    }))
   }
+
+  useEffect(() => {
+    const isErrorClean = checkAllEmpty(newPostError)
+    const isUserComplete = CheckForm(newPost)
+    if (isErrorClean && isUserComplete) {
+      setIsFormComplete(true)
+    } else {
+      setIsFormComplete(false)
+    }
+  }, [newPost, newPostError])
+
   const handlePost = async (e) => {
     e.preventDefault()
-    setLoading(true)
     try {
       const postCreation = await CreatePost(newPost, token)
       if (postCreation.success) {
@@ -94,16 +113,14 @@ const Home = () => {
         }, 1200)
       }
       setNewPost(postCreation)
-      setLoading(false)
+      setIsModalOpen(false)
     } catch (error) {
-      setLoading(false)
       setAlert(true)
       setStateMessage({
         message: `${error}`,
         className: "danger",
       })
     }
-    setIsModalOpen(false)
   }
 
   return (
@@ -113,31 +130,42 @@ const Home = () => {
         isOpen={isModalOpen}
         toggle={() => setIsModalOpen(false)}
       >
-        <form className="p-3 " onSubmit={handlePost}>
-          <textarea
-            className="input-modal"
-            name="content"
-            placeholder="Escribe qué es lo que odias más"
-            value={newPost.content}
-            onChange={handleChange}
-            rows="4"
-          />
-          <div className="error">{""}</div>
-
-          <ButtonCustom
-            text={"Guardar cambios"}
-            handleSubmit={handlePost}
-            isFormComplete={true}
-          />
-          <div className="d-flex justify-content-center m-3">
-            <button
-              className="btn btn-outline-info"
-              onClick={() => setIsModalOpen(false)}
-            >
-              Cancelar
-            </button>
+        {
+        alert ? (
+          <div className="d-flex justify-content-center mt-3">
+            <AlertCustom
+              className={stateMessage.className}
+              message={stateMessage.message}
+            />
           </div>
-        </form>
+        ) : (
+          <>
+            <textarea
+              className="input-modal"
+              name="content"
+              placeholder="Escribe qué es lo que odias más"
+              value={newPost.content}
+              onChange={handleChange}
+              rows="4"
+            />
+            <div className="error">{""}</div>
+            <ButtonCustom
+              text={"Guardar cambios"}
+              handleSubmit={handlePost}
+              isFormComplete={isFormComplete}
+            />
+            <div className="d-flex justify-content-center">
+              <button
+                className="btn btn-outline-info"
+                onClick={() => {
+                  setIsModalOpen(false)
+                }}
+              >
+                Cancelar
+              </button>
+            </div>
+          </>
+        )}
       </Modal>
 
       <Fabicon

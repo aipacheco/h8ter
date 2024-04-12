@@ -68,7 +68,7 @@ export const CreatePost = async (body, token) => {
     }
     return data
   } catch (error) {
-    console.log("Error al registrar el usuario", error)
+    console.log("Error al guardar el post", error)
     throw error
   }
 }

@@ -46,7 +46,7 @@ const Profile = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="container">
+        <div className="container mt-5">
           <ProfileCard avatar={profile.avatar} banner={profile.banner} />
         </div>
       )}

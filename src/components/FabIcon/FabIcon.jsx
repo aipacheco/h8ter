@@ -3,10 +3,10 @@ import Fab from "@mui/material/Fab"
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp"
 import { ThemeProvider } from "@mui/material/styles"
 import { FabTheme, PinkTheme } from "../../utils/themes"
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline"
+import AddIcon from "@mui/icons-material/Add"
 
 const Fabicon = ({ onClick, style, icon, custom }) => {
-  const Icon = icon === "add" ? AddCircleOutlineIcon : KeyboardDoubleArrowUpIcon
+  const Icon = icon === "add" ? AddIcon : KeyboardDoubleArrowUpIcon
   const customTheme = custom === "pink" ? PinkTheme : FabTheme
 
   return (
