@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles"
+import "../components/FabIcon/FabIcon.css"
 
 export const FabTheme = createTheme({
   components: {
@@ -12,6 +13,7 @@ export const FabTheme = createTheme({
             backgroundColor: "#c8ffff",
             boxShadow:
               "2px -2px 1px rgba(255, 0, 255, 1), -2px 2px 1px rgba(0, 255, 255, 1)",
+              animation: "rotate-center 0.6s ease-in-out both"
           },
         },
       },
@@ -31,6 +33,7 @@ export const PinkTheme = createTheme({
             backgroundColor: "#c8ffff",
             boxShadow:
               "2px -2px 1px rgba(255, 0, 255, 1), -2px 2px 1px rgba(0, 255, 255, 1)",
+              animation: "rotate-center 0.6s ease-in-out both"
           },
         },
       },

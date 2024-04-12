@@ -10,6 +10,7 @@ import { Modal } from "reactstrap"
 import { useSelector } from "react-redux"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
 import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
+import CloseIcon from "@mui/icons-material/Close"
 
 const Home = () => {
   const [loading, setLoading] = useState(false)
@@ -130,8 +131,16 @@ const Home = () => {
         isOpen={isModalOpen}
         toggle={() => setIsModalOpen(false)}
       >
-        {
-        alert ? (
+        <div
+          className="close-button"
+          onClick={() => {
+            setIsModalOpen(false)
+          }}
+        >
+          {" "}
+          <CloseIcon className="clickable"/>
+        </div>
+        {alert ? (
           <div className="d-flex justify-content-center mt-3">
             <AlertCustom
               className={stateMessage.className}
@@ -155,14 +164,7 @@ const Home = () => {
               isFormComplete={isFormComplete}
             />
             <div className="d-flex justify-content-center">
-              <button
-                className="btn btn-outline-info"
-                onClick={() => {
-                  setIsModalOpen(false)
-                }}
-              >
-                Cancelar
-              </button>
+
             </div>
           </>
         )}

@@ -21,7 +21,11 @@
   width: 100%;
   margin: 0 auto;
   margin-bottom: 1em;
-  /* height: 5em; */
+}
+.close-button {
+  text-align: right;
+  margin-bottom: 1em;
+  color: #414141;
 }
 textarea {
   border-color: #ff00ff !important;

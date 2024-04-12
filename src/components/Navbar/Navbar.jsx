@@ -6,7 +6,7 @@ const Navbar = () => {
       <div className="bg-body-secondary nav justify-content-center mt-3 sticky-top general-nav">
         <div className="nav-item">
           <Link to="/" replace>
-            <h1>H8</h1>
+            <h1>H8ter</h1>
           </Link>
         </div> 
       </div>
