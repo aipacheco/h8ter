@@ -11,6 +11,7 @@ import { useSelector } from "react-redux"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
 import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
 import CloseIcon from "@mui/icons-material/Close"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
   const [loading, setLoading] = useState(false)
@@ -26,6 +27,7 @@ const Home = () => {
   const [newPostError, setNewPostError] = useState({})
   const [alert, setAlert] = useState(false)
   const [isFormComplete, setIsFormComplete] = useState(false)
+  const navigate = useNavigate()
   const token = useSelector((state) => state.auth.token)
   const decode = useSelector((state) => state.auth.decode)
 
@@ -70,6 +72,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchPosts()
+    //se añade array de nuevo post para que renderice al crear uno
   }, [newPost])
 
   const handleModal = () => {
@@ -123,7 +126,6 @@ const Home = () => {
       })
     }
   }
-
   return (
     <>
       <Modal
@@ -138,7 +140,7 @@ const Home = () => {
           }}
         >
           {" "}
-          <CloseIcon className="clickable"/>
+          <CloseIcon className="clickable" />
         </div>
         {alert ? (
           <div className="d-flex justify-content-center mt-3">
@@ -163,19 +165,27 @@ const Home = () => {
               handleSubmit={handlePost}
               isFormComplete={isFormComplete}
             />
-            <div className="d-flex justify-content-center">
-
-            </div>
+            <div className="d-flex justify-content-center"></div>
           </>
         )}
       </Modal>
 
+      {token && ( 
+        <>
       <Fabicon
         onClick={handleModal}
         icon={"add"}
         custom={"pink"}
         style={{ position: "fixed", bottom: 100, left: 30 }}
       />
+        <Fabicon
+          onClick={() => navigate(`/${decode.username}`)}
+          icon={"person"}
+          custom={""}
+          style={{ position: "fixed", bottom: 200, left: 30 }}
+        />
+        </>
+      )}
 
       <div className="container">
         {posts
