@@ -77,7 +77,7 @@ const Home = () => {
             ))}
           {showScrollButton && (
             <div>
-              <Fabicon scrollToTop={scrollToTop} />
+              <Fabicon onClick={scrollToTop} style={{position: "fixed", bottom: 100, right: 30} } />
             </div>
           )}
         </div>

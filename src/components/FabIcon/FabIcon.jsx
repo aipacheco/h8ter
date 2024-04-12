@@ -3,15 +3,18 @@ import Fab from "@mui/material/Fab"
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp"
 import { ThemeProvider } from "@mui/material/styles"
 import { FabTheme } from "../../utils/themes"
+import { useState } from "react"
 
-const Fabicon = ({ scrollToTop }) => {
+const Fabicon = ({ onClick, style }) => {
+  const [style, setStyle] = useState({ position: "", bottom: 0, right: 0 })
+
   return (
     <ThemeProvider theme={FabTheme}>
       <Fab
         className="fab-button"
-        onClick={scrollToTop}
+        onClick={onClick}
         aria-label="add"
-        style={{ position: "fixed", bottom: 100, right: 30 }}
+        style={style}
       >
         <KeyboardDoubleArrowUpIcon />
       </Fab>
