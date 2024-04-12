@@ -6,7 +6,6 @@ import { persistReducer, persistStore } from "redux-persist"
 import { encryptTransform } from "redux-persist-transform-encrypt"
 
 
-
 const rootReducer = combineReducers({
   auth: authReducer,
   // añadir más reducers si los hay
@@ -17,7 +16,7 @@ const persistConfig = {
   storage,
   transforms: [
     encryptTransform({
-      secretKey: import.meta.env.VITE_SECRET_KEY, 
+      secretKey: import.meta.env.VITE_SECRET_KEY,
       onError: function (error) {
         console.log(error)
       },
