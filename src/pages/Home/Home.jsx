@@ -4,7 +4,6 @@ import { CreatePost, GetPosts } from "../../services/postServices"
 import Footer from "../../components/Footer/Footer"
 import PostCard from "../../components/PostCard/PostCard"
 import Fabicon from "../../components/FabIcon/FabIcon"
-import Spinner from "../../components/Spinner/Spinner"
 import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
 import { Modal } from "reactstrap"
 import { useSelector } from "react-redux"
@@ -14,7 +13,6 @@ import CloseIcon from "@mui/icons-material/Close"
 import { useNavigate } from "react-router-dom"
 
 const Home = () => {
-  const [loading, setLoading] = useState(false)
   const [posts, setPosts] = useState([])
   const [likes, setLikes] = useState([])
   const [showScrollButton, setShowScrollButton] = useState(false)
@@ -60,14 +58,19 @@ const Home = () => {
   }, [likes, posts.likes])
 
   const fetchPosts = async () => {
-    setLoading(true)
     try {
       const allPosts = await GetPosts()
       setPosts(allPosts.data)
     } catch (error) {
       console.log(error)
+      setStateMessage({
+        message: `${error}`,
+        className: "danger",
+      })
+      setTimeout(() => {
+        setAlert(false)
+      }, 1200)
     }
-    setLoading(false)
   }
 
   useEffect(() => {
@@ -92,6 +95,7 @@ const Home = () => {
     }))
   }
 
+  //comprobar funcionamiento
   useEffect(() => {
     const isErrorClean = checkAllEmpty(newPostError)
     const isUserComplete = CheckForm(newPost)
@@ -107,7 +111,6 @@ const Home = () => {
     try {
       const postCreation = await CreatePost(newPost, token)
       if (postCreation.success) {
-        setAlert(true)
         setStateMessage({
           message: postCreation.message,
           className: "success",
@@ -126,6 +129,7 @@ const Home = () => {
       })
     }
   }
+
   return (
     <>
       <Modal
@@ -170,38 +174,45 @@ const Home = () => {
         )}
       </Modal>
 
-      {token && ( 
+      {token && (
         <>
-      <Fabicon
-        onClick={handleModal}
-        icon={"add"}
-        custom={"pink"}
-        style={{ position: "fixed", bottom: 100, left: 30 }}
-      />
-        <Fabicon
-          onClick={() => navigate(`/${decode.username}`)}
-          icon={"person"}
-          custom={""}
-          style={{ position: "fixed", bottom: 200, left: 30 }}
-        />
+          <Fabicon
+            onClick={handleModal}
+            icon={"add"}
+            custom={"pink"}
+            style={{ position: "fixed", bottom: 100, left: 30 }}
+          />
+          <Fabicon
+            onClick={() => navigate(`/${decode.username}`)}
+            icon={"person"}
+            custom={"blink"}
+            style={{ position: "fixed", bottom: 200, left: 30 }}
+          />
         </>
       )}
 
       <div className="container">
-        {posts
-          .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-          .map((post) => (
-            <PostCard
-              key={post._id}
-              id={post._id}
-              content={post.content}
-              username={post.authorUsername}
-              publishedAt={post.publishedAt}
-              avatar={post.avatar}
-              image={post.image}
-              likes={post.likes}
-            />
-          ))}
+        {alert ? (
+          <AlertCustom />
+        ) : (
+          <>
+            {posts
+              .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+              .map((post) => (
+                <PostCard
+                  key={post._id}
+                  id={post._id}
+                  content={post.content}
+                  username={post.authorUsername}
+                  publishedAt={post.publishedAt}
+                  avatar={post.avatar}
+                  image={post.image}
+                  likes={post.likes}
+                />
+              ))}
+          </>
+        )}
+
         {showScrollButton && (
           <div>
             <Fabicon
