@@ -1,17 +1,28 @@
 import "./Home.css"
 import { useEffect, useState } from "react"
-import { GetPosts } from "../../services/postServices"
+import { CreatePost, GetPosts } from "../../services/postServices"
 import Footer from "../../components/Footer/Footer"
 import PostCard from "../../components/PostCard/PostCard"
 import Fabicon from "../../components/FabIcon/FabIcon"
-import Sidebar from "../../components/Sidebar/Sidebar"
 import Spinner from "../../components/Spinner/Spinner"
+import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
+import { Modal } from "reactstrap"
+import { useSelector } from "react-redux"
 
 const Home = () => {
   const [loading, setLoading] = useState(false)
   const [posts, setPosts] = useState([])
   const [likes, setLikes] = useState([])
   const [showScrollButton, setShowScrollButton] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [newPost, setNewPost] = useState({})
+  const [stateMessage, setStateMessage] = useState({
+    message: "",
+    className: "",
+  })
+  const [alert, setAlert] = useState(false)
+  const token = useSelector((state) => state.auth.token)
+  const decode = useSelector((state) => state.auth.decode)
 
   //función para el botón de volver hacia arriba
   const handleScroll = () => {
@@ -54,34 +65,113 @@ const Home = () => {
   }
   useEffect(() => {
     fetchPosts()
-  }, [])
+  }, [newPost])
+
+  const handleModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleChange = ({ target }) => {
+    const { name, value } = target
+    setNewPost((prevProfile) => ({
+      ...prevProfile,
+      [name]: value,
+    }))
+  }
+  const handlePost = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      const postCreation = await CreatePost(newPost, token)
+      if (postCreation.success) {
+        setAlert(true)
+        setStateMessage({
+          message: postCreation.message,
+          className: "success",
+        })
+        setTimeout(() => {
+          setAlert(false)
+        }, 1200)
+      }
+      setNewPost(postCreation)
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      setAlert(true)
+      setStateMessage({
+        message: `${error}`,
+        className: "danger",
+      })
+    }
+    setIsModalOpen(false)
+  }
 
   return (
     <>
-      <div className="row flex-nowrap p-0 m-0">
-        <Sidebar />
-        <div className="col-10 col-md-10 col-lg-10">
-          {posts
-            .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-            .map((post) => (
-              <PostCard
-                key={post._id}
-                id={post._id}
-                content={post.content}
-                username={post.authorUsername}
-                publishedAt={post.publishedAt}
-                avatar={post.avatar}
-                image={post.image}
-                likes={post.likes}
-              />
-            ))}
-          {showScrollButton && (
-            <div>
-              <Fabicon onClick={scrollToTop} style={{position: "fixed", bottom: 100, right: 30} } />
-            </div>
-          )}
-        </div>
+      <Modal
+        className="center-modal modal-form"
+        isOpen={isModalOpen}
+        toggle={() => setIsModalOpen(false)}
+      >
+        <form className="p-3 " onSubmit={handlePost}>
+          <textarea
+            className="input-modal"
+            name="content"
+            placeholder="Escribe qué es lo que odias más"
+            value={newPost.content}
+            onChange={handleChange}
+            rows="4"
+          />
+          <div className="error">{""}</div>
+
+          <ButtonCustom
+            text={"Guardar cambios"}
+            handleSubmit={handlePost}
+            isFormComplete={true}
+          />
+          <div className="d-flex justify-content-center m-3">
+            <button
+              className="btn btn-outline-info"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </Modal>
+
+      <Fabicon
+        onClick={handleModal}
+        icon={"add"}
+        custom={"pink"}
+        style={{ position: "fixed", bottom: 100, left: 30 }}
+      />
+
+      <div className="container">
+        {posts
+          .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+          .map((post) => (
+            <PostCard
+              key={post._id}
+              id={post._id}
+              content={post.content}
+              username={post.authorUsername}
+              publishedAt={post.publishedAt}
+              avatar={post.avatar}
+              image={post.image}
+              likes={post.likes}
+            />
+          ))}
+        {showScrollButton && (
+          <div>
+            <Fabicon
+              onClick={scrollToTop}
+              style={{ position: "fixed", bottom: 100, right: 30 }}
+            />
+          </div>
+        )}
       </div>
+
       <Footer />
     </>
   )

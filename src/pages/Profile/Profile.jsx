@@ -3,7 +3,6 @@ import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { GetProfile } from "../../services/userServices"
 import ProfileCard from "../../components/ProfileCard/ProfileCard"
-import Sidebar from "../../components/Sidebar/Sidebar"
 import Footer from "../../components/Footer/Footer"
 import Spinner from "../../components/Spinner/Spinner"
 
@@ -47,8 +46,7 @@ const Profile = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="row flex-nowrap p-0 m-0">
-          <Sidebar />
+        <div className="container">
           <ProfileCard avatar={profile.avatar} banner={profile.banner} />
         </div>
       )}
