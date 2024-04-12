@@ -5,7 +5,7 @@ input:focus {
     box-shadow: -2px 2px 1px rgba(0,255,255,1), 2px -2px 1px rgba(255,0,255,1) !important;
   } 
 input{
-  border-color: rgba(255,0,255,1) !important;
+  border-color: #ff00ff !important;
   /* box-shadow: -2px 2px 1px rgba(0,255,255,1), 2px -2px 1px rgba(255,0,255,1); */
 }
 .input-container{

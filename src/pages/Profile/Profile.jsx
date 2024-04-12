@@ -11,6 +11,13 @@ const Profile = () => {
   const token = useSelector((state) => state.auth.token)
   const decode = useSelector((state) => state.auth.decode)
 
+  if (token & decode) {
+    console.log(decode.exp)
+    const dateExp = decode.exp
+    const date = new Date(dateExp * 1000)
+    console.log(date)
+  }
+
   //hay que sacar el username de los params (la barra de navegación) para pasarlo a GetProfile
   //si el usuario no existe hay que renderizar un error y un botón para volver a home
   const { username } = useParams()
@@ -24,7 +31,7 @@ const Profile = () => {
     try {
       const myProfile = await GetProfile(username)
       setProfile(myProfile.data)
-      console.log(profile)
+      // console.log(profile)
     } catch (error) {
       console.error("Error fetching profile:", error)
     }
@@ -32,12 +39,7 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    // if (token && decode.role === "super_admin") {
-    //   navigate("/admin")
-    // }
-    // if (token && decode.role === "user") {
     fetchProfile()
-    // }
   }, [token])
 
   return (
@@ -47,7 +49,6 @@ const Profile = () => {
       ) : (
         <div className="row flex-nowrap p-0 m-0">
           <Sidebar />
-
           <ProfileCard avatar={profile.avatar} banner={profile.banner} />
         </div>
       )}

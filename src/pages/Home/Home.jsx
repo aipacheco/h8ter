@@ -39,7 +39,6 @@ const Home = () => {
   useEffect(() => {
     fetchPosts()
     setLikes(posts.likes)
- 
   }, [likes, posts.likes])
 
   const fetchPosts = async () => {
@@ -60,27 +59,22 @@ const Home = () => {
   return (
     <>
       <div className="row flex-nowrap p-0 m-0">
-  
         <Sidebar />
         <div className="col-10 col-md-10 col-lg-10">
-          {/* {token ? (
-            <> */}
-              {posts
-                .sort(
-                  (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
-                )
-                .map((post) => (
-                  <PostCard
-                    key={post._id}
-                    id={post._id}
-                    content={post.content}
-                    username={post.authorUsername}
-                    publishedAt={post.publishedAt}
-                    avatar={post.avatar}
-                    image={post.image}
-                    likes={post.likes}
-                  />
-                ))}
+          {posts
+            .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+            .map((post) => (
+              <PostCard
+                key={post._id}
+                id={post._id}
+                content={post.content}
+                username={post.authorUsername}
+                publishedAt={post.publishedAt}
+                avatar={post.avatar}
+                image={post.image}
+                likes={post.likes}
+              />
+            ))}
           {showScrollButton && (
             <div>
               <Fabicon scrollToTop={scrollToTop} />

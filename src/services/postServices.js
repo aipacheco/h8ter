@@ -51,3 +51,24 @@ export const GetPostById = async (id) => {
     throw error
   }
 }
+
+export const CreatePost = async (body, token) => {
+  try {
+    const response = await fetch(`${URL}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(body),
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log("Error al registrar el usuario", error)
+    throw error
+  }
+}

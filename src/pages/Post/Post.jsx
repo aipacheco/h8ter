@@ -26,7 +26,7 @@ const Post = () => {
 
   useEffect(() => {
     fetchPost()
-    console.log(singlePost)
+    // console.log(singlePost)
   }, [])
 
   const { avatar, username } = author
