@@ -1,35 +1,32 @@
 import "./Home.css"
 import { useEffect, useState } from "react"
-import { CreatePost, GetPosts } from "../../services/postServices"
+import { GetPosts } from "../../services/postServices"
 import Footer from "../../components/Footer/Footer"
 import PostCard from "../../components/PostCard/PostCard"
 import Fabicon from "../../components/FabIcon/FabIcon"
-import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
-import { Modal } from "reactstrap"
 import { useSelector } from "react-redux"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
-import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
-import CloseIcon from "@mui/icons-material/Close"
-import { useNavigate } from "react-router-dom"
+import PostCreator from "../../components/PostCreate/PostCreate"
 
 const Home = () => {
   const [posts, setPosts] = useState([])
   const [likes, setLikes] = useState([])
   const [showScrollButton, setShowScrollButton] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [newPost, setNewPost] = useState({})
   const [stateMessage, setStateMessage] = useState({
     message: "",
     className: "",
   })
-  const [newPostError, setNewPostError] = useState({})
   const [alert, setAlert] = useState(false)
-  const [isFormComplete, setIsFormComplete] = useState(false)
-  const navigate = useNavigate()
-  const token = useSelector((state) => state.auth.token)
-  const decode = useSelector((state) => state.auth.decode)
+  const [refreshPosts, setRefreshPosts] = useState(false)
 
-  //función para el botón de volver hacia arriba
+  const token = useSelector((state) => state.auth.token)
+
+  const handleNewPost = () => {
+    // cambia el estado desde PostCreate
+    setRefreshPosts((prev) => !prev)
+  }
+
+  //funciones para el botón de volver hacia arriba
   const handleScroll = () => {
     if (window.pageYOffset > 500) {
       setShowScrollButton(true)
@@ -43,7 +40,6 @@ const Home = () => {
       behavior: "smooth",
     })
   }
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll)
     // limpia el evento para evitar efectos secundarios
@@ -75,125 +71,18 @@ const Home = () => {
 
   useEffect(() => {
     fetchPosts()
-    //se añade array de nuevo post para que renderice al crear uno
-  }, [newPost])
-
-  const handleModal = () => {
-    setIsModalOpen(true)
-  }
-
-  const handleChange = ({ target }) => {
-    const { name, value } = target
-    setNewPost((prevProfile) => ({
-      ...prevProfile,
-      [name]: value,
-    }))
-    const error = validator(target.value, target.name)
-    setNewPostError((prevState) => ({
-      ...prevState,
-      [target.name + "Error"]: error,
-    }))
-  }
-
-  //comprobar funcionamiento
-  useEffect(() => {
-    const isErrorClean = checkAllEmpty(newPostError)
-    const isUserComplete = CheckForm(newPost)
-    if (isErrorClean && isUserComplete) {
-      setIsFormComplete(true)
-    } else {
-      setIsFormComplete(false)
-    }
-  }, [newPost, newPostError])
-
-  const handlePost = async (e) => {
-    e.preventDefault()
-    try {
-      const postCreation = await CreatePost(newPost, token)
-      if (postCreation.success) {
-        setStateMessage({
-          message: postCreation.message,
-          className: "success",
-        })
-        setTimeout(() => {
-          setAlert(false)
-        }, 1200)
-      }
-      setNewPost(postCreation)
-      setIsModalOpen(false)
-    } catch (error) {
-      setAlert(true)
-      setStateMessage({
-        message: `${error}`,
-        className: "danger",
-      })
-    }
-  }
+    /*se añade array de refresh para que 
+    renderice al crear uno nuevo desde PostCreate*/
+  }, [refreshPosts])
 
   return (
     <>
-      <Modal
-        className="center-modal modal-form"
-        isOpen={isModalOpen}
-        toggle={() => setIsModalOpen(false)}
-      >
-        <div
-          className="close-button"
-          onClick={() => {
-            setIsModalOpen(false)
-          }}
-        >
-          {" "}
-          <CloseIcon className="clickable" />
-        </div>
-        {alert ? (
-          <div className="d-flex justify-content-center mt-3">
-            <AlertCustom
-              className={stateMessage.className}
-              message={stateMessage.message}
-            />
-          </div>
-        ) : (
-          <>
-            <textarea
-              className="input-modal"
-              name="content"
-              placeholder="Escribe qué es lo que odias más"
-              value={newPost.content}
-              onChange={handleChange}
-              rows="4"
-            />
-            <div className="error">{""}</div>
-            <ButtonCustom
-              text={"Guardar cambios"}
-              handleSubmit={handlePost}
-              isFormComplete={isFormComplete}
-            />
-            <div className="d-flex justify-content-center"></div>
-          </>
-        )}
-      </Modal>
-
-      {token && (
-        <>
-          <Fabicon
-            onClick={handleModal}
-            icon={"add"}
-            custom={"pink"}
-            style={{ position: "fixed", bottom: 100, left: 30 }}
-          />
-          <Fabicon
-            onClick={() => navigate(`/${decode.username}`)}
-            icon={"person"}
-            custom={"blink"}
-            style={{ position: "fixed", bottom: 200, left: 30 }}
-          />
-        </>
-      )}
-
       <div className="container">
         {alert ? (
-          <AlertCustom />
+          <AlertCustom
+            className={stateMessage.className}
+            message={stateMessage.message}
+          />
         ) : (
           <>
             {posts
@@ -212,7 +101,7 @@ const Home = () => {
               ))}
           </>
         )}
-
+        {token && <PostCreator token={token} onPostCreated={handleNewPost} />}
         {showScrollButton && (
           <div>
             <Fabicon
