@@ -12,8 +12,8 @@ import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 
 const PostCreator = ({ token, onPostCreated }) => {
-  const [newPost, setNewPost] = useState({})
-  const [newPostError, setNewPostError] = useState({})
+  const [newPost, setNewPost] = useState({ content: "" })
+  const [newPostError, setNewPostError] = useState({ contentError: "" })
   const [isFormComplete, setIsFormComplete] = useState(false)
   const [alert, setAlert] = useState(false)
   const [stateMessage, setStateMessage] = useState({
@@ -109,7 +109,7 @@ const PostCreator = ({ token, onPostCreated }) => {
               onChange={handleChange}
               rows="4"
             />
-            <div className="error">{""}</div>
+            <div className="error">{newPostError.contentError}</div>
             <ButtonCustom
               text={"Guardar cambios"}
               handleSubmit={handlePost}
@@ -134,21 +134,6 @@ const PostCreator = ({ token, onPostCreated }) => {
           style={{ position: "fixed", bottom: 200, left: 30 }}
         />
       </>
-
-      {alert && (
-        <AlertCustom
-          className={stateMessage.className}
-          message={stateMessage.message}
-        />
-      )}
-      <textarea
-        value={newPost.content || ""}
-        onChange={handleChange}
-        name="content"
-      />
-      <button onClick={handlePost} disabled={!isFormComplete}>
-        Create Post
-      </button>
     </>
   )
 }

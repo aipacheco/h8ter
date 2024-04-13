@@ -6,6 +6,7 @@ import ProfileCard from "../../components/ProfileCard/ProfileCard"
 import Footer from "../../components/Footer/Footer"
 import Spinner from "../../components/Spinner/Spinner"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
+import PostCreator from "../../components/PostCreate/PostCreate"
 
 const Profile = () => {
   const token = useSelector((state) => state.auth.token)
@@ -20,6 +21,7 @@ const Profile = () => {
     message: "",
     className: "",
   })
+  const [refreshPosts, setRefreshPosts] = useState(false)
   const navigate = useNavigate()
 
   const fetchProfile = async () => {
@@ -45,7 +47,12 @@ const Profile = () => {
 
   useEffect(() => {
     fetchProfile()
-  }, [token])
+  }, [])
+
+  const handleNewPost = () => {
+    // cambia el estado desde PostCreate
+    setRefreshPosts((prev) => !prev)
+  }
 
   return (
     <>
@@ -58,16 +65,19 @@ const Profile = () => {
             message={stateMessage.message}
           />
           <div>
-            Volver a {" "}
+            Volver a{" "}
             <Link id="login-link" to="/">
               Inicio
             </Link>
           </div>
         </div>
       ) : (
-        <div className="container mt-5">
-          <ProfileCard avatar={profile.avatar} banner={profile.banner} />
-        </div>
+        <>
+          <div className="container mt-5">
+            <ProfileCard avatar={profile.avatar} banner={profile.banner} />
+          </div>
+          {token && <PostCreator token={token} onPostCreated={handleNewPost} />}
+        </>
       )}
       <Footer />
     </>
