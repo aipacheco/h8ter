@@ -22,3 +22,9 @@
 .post-single{
   cursor: pointer;
 }
+.card-post{
+  border-color: rgb(0, 255, 255)
+}
+#user-link{
+  color: rgba(255, 0, 255, 1) !important;
+}

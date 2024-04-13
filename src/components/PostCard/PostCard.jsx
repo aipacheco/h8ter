@@ -63,8 +63,10 @@ const PostCard = ({
     <div className="container mt-3">
       <div className="card card-post p-2">
         <div className="avatar-container">
-          <img className="avatar-post" src={avatar} alt="avatar" />
-          <Link className="m-2" to={`/${username}`}>
+          {avatar ? (
+            <img className="avatar-post" src={avatar} alt="avatar" />
+          ) : null}
+          <Link className="m-2" id="user-link" to={`/${username}`}>
             <div>{username}</div>
           </Link>
         </div>

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { GetProfile } from "../../services/userServices"
 import ProfileCard from "../../components/ProfileCard/ProfileCard"
 import Footer from "../../components/Footer/Footer"
 import Spinner from "../../components/Spinner/Spinner"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
 import PostCreator from "../../components/PostCreate/PostCreate"
+import PostCard from "../../components/PostCard/PostCard"
 
 const Profile = () => {
   const token = useSelector((state) => state.auth.token)
@@ -21,15 +22,15 @@ const Profile = () => {
     message: "",
     className: "",
   })
+  const [userPosts, setUserPosts] = useState([])
   const [refreshPosts, setRefreshPosts] = useState(false)
-  const navigate = useNavigate()
 
   const fetchProfile = async () => {
     setLoading(true)
     try {
       const myProfile = await GetProfile(username)
       setProfile(myProfile.data)
-      // console.log(profile)
+      setUserPosts(myProfile.data.posts)
     } catch (error) {
       console.log("Error fetching profile:", error)
       setAlert(true)
@@ -37,17 +38,13 @@ const Profile = () => {
         message: `${error}`,
         className: "danger",
       })
-      // setTimeout(() => {
-      //   setAlert(false)
-      //   navigate("/")
-      // }, 1200)
     }
     setLoading(false)
   }
-
+  // console.log(userPosts)
   useEffect(() => {
     fetchProfile()
-  }, [])
+  }, [username])
 
   const handleNewPost = () => {
     // cambia el estado desde PostCreate
@@ -74,9 +71,32 @@ const Profile = () => {
       ) : (
         <>
           <div className="container mt-5">
-            <ProfileCard avatar={profile.avatar} banner={profile.banner} />
+            <ProfileCard
+              avatar={profile.avatar}
+              banner={profile.banner}
+              username={profile.username}
+              description={profile.description}
+            />
+            {token && (
+              <PostCreator token={token} onPostCreated={handleNewPost} />
+            )}
           </div>
-          {token && <PostCreator token={token} onPostCreated={handleNewPost} />}
+          <div className="container mt-2">
+            {userPosts
+              .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+              .map((post) => (
+                <PostCard
+                  key={post._id}
+                  id={post._id}
+                  content={post.content}
+                  username={post.authorUsername}
+                  publishedAt={post.publishedAt}
+                  avatar={post.avatar}
+                  image={post.image}
+                  likes={post.likes}
+                />
+              ))}
+          </div>
         </>
       )}
       <Footer />
