@@ -15,6 +15,7 @@ const PostCard = ({
   avatar,
   id,
   image,
+  onDelete, canDelete
 }) => {
   const [like, setLike] = useState([likes])
   const [userHasLiked, setUserHasLiked] = useState(false)
@@ -94,6 +95,7 @@ const PostCard = ({
           <div className="card-footer text-end mt-3">{formattedDateTime}</div>
         </div>
       </div>
+     {canDelete && <button onClick={onDelete}>Eliminar</button> }
     </div>
   )
 }

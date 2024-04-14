@@ -6,13 +6,20 @@ import CloseIcon from "@mui/icons-material/Close"
 import AlertCustom from "../AlertCustom/AlertCustom"
 import ButtonCustom from "../ButtonCustom/ButtonCustom"
 import Fabicon from "../FabIcon/FabIcon"
-import { useNavigate } from "react-router-dom"
 import InputCustom from "../InputCustom/InputCustom"
 import { UpdateProfile } from "../../services/userServices"
 import { useSelector } from "react-redux"
 import Spinner from "../Spinner/Spinner"
+import { validator } from "../../utils/utils"
 
-const ProfileCard = ({ banner, avatar, username, description, edit }) => {
+const ProfileCard = ({
+  banner,
+  avatar,
+  username,
+  description,
+  edit,
+  onEdit,
+}) => {
   const [editProfile, setEditProfile] = useState({ description: "" })
   const [editProfileError, setEditProfileError] = useState({ contentError: "" })
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -26,7 +33,6 @@ const ProfileCard = ({ banner, avatar, username, description, edit }) => {
   const [alert, setAlert] = useState(false)
   const [avatarPreview, setAvatarPreview] = useState(avatar)
   const [bannerPreview, setBannerPreview] = useState(banner)
-  const navigate = useNavigate()
   const token = useSelector((state) => state.auth.token)
 
   const handleModal = () => {
@@ -48,6 +54,11 @@ const ProfileCard = ({ banner, avatar, username, description, edit }) => {
   const handleChange = ({ target }) => {
     const { name, value } = target
     setEditProfile((prev) => ({ ...prev, [name]: value }))
+    const error = validator(target.value, target.name)
+    setEditProfileError((prevState) => ({
+      ...prevState,
+      [target.name + "Error"]: error,
+    }))
   }
 
   const handleEditSubmit = async (e) => {
@@ -61,16 +72,21 @@ const ProfileCard = ({ banner, avatar, username, description, edit }) => {
     try {
       const profileEdit = await UpdateProfile(profileDataToUpdate, token)
       if (profileEdit.success) {
-        console.log(profileEdit.data)
-        // setAvatarPreview(URL.createObjectURL(avatarFile))
-        // setBannerPreview(URL.createObjectURL(bannerFile))
-        // setEditProfile(profileEdit.data.description)
-        // setLoading(false)
-        // setIsModalOpen(false)
+        onEdit()
+        setLoading(false)
+        setIsModalOpen(false)
       }
     } catch (error) {
       setLoading(false)
-      console.log(error)
+      setAlert(true)
+      setStateMessage({
+        message: `${error}`,
+        className: "danger",
+      })
+      setTimeout(() => {
+        setAlert(false)
+        setIsModalOpen(false)
+      }, 1200)
     }
   }
 
@@ -86,6 +102,11 @@ const ProfileCard = ({ banner, avatar, username, description, edit }) => {
         </div>
         {loading ? (
           <Spinner />
+        ) : alert ? (
+          <AlertCustom
+            className={stateMessage.className}
+            message={stateMessage.message}
+          />
         ) : (
           <>
             <InputCustom
@@ -95,9 +116,10 @@ const ProfileCard = ({ banner, avatar, username, description, edit }) => {
               value={editProfile.description || ""}
               handleChange={handleChange}
             />
+            <div className="error">{editProfileError.descriptionError}</div>
             <div className="mt-3">
               <img
-                src={avatarPreview}
+                src={avatarPreview || avatar}
                 alt="Avatar Preview"
                 className="preview-image avatar-modal"
               />
@@ -111,7 +133,10 @@ const ProfileCard = ({ banner, avatar, username, description, edit }) => {
               />
             </div>
             <div className="mt-3 mb-3">
-              <img src={bannerPreview} className="preview-image banner-modal" />
+              <img
+                src={bannerPreview || banner}
+                className="preview-image banner-modal"
+              />
               <InputCustom
                 type={"file"}
                 name={"banner"}

@@ -77,13 +77,13 @@ export const DeletePost = async (id, token) => {
   try {
     const response = await fetch(`${URL}/${id}`, {
       method: "DELETE",
-      redirect: "follow",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Authorization": `Bearer ${token}`,
       },
     })
     const data = await response.json()
+    console.log(data)
     if (!data.success) {
       throw new Error(data.message)
     }
