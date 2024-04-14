@@ -134,7 +134,7 @@ const PostCreator = ({ token, onPostCreated }) => {
           custom={"pink"}
           style={{ position: "fixed", bottom: 100, left: 30 }}
         />
-         <Fabicon
+        <Fabicon
           onClick={handleLogout}
           icon={"logout"}
           custom={"out"}
@@ -145,6 +145,12 @@ const PostCreator = ({ token, onPostCreated }) => {
           icon={"person"}
           custom={"blink"}
           style={{ position: "fixed", bottom: 300, left: 30 }}
+        />
+        <Fabicon
+          onClick={() => navigate(`/`)}
+          icon={"home"}
+          custom={"edit"}
+          style={{ position: "fixed", bottom: 400, left: 30 }}
         />
       </>
     </>

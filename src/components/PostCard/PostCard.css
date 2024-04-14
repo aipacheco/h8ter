@@ -25,6 +25,10 @@
 .card-post{
   border-color: rgb(0, 255, 255)
 }
+.card-post:hover {
+  box-shadow: -2px 2px 0.3px rgba(0, 255, 255, 0.8),
+    2px -2px 0.3px rgba(255, 0, 255, 0.8) !important;
+}
 #user-link{
   color: rgba(255, 0, 255, 1) !important;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
@@ -63,7 +64,6 @@ const Profile = () => {
   }
 
   const handleDeletePost = async (id) => {
-    console.log("hola")
     try {
       const deletedPost = await DeletePost(id, token)
       if (deletedPost.success) {

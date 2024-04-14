@@ -7,6 +7,7 @@ import AddIcon from "@mui/icons-material/Add"
 import PersonIcon from "@mui/icons-material/Person"
 import LogoutIcon from "@mui/icons-material/Logout"
 import ModeEditIcon from '@mui/icons-material/ModeEdit'
+import HomeIcon from '@mui/icons-material/Home';
 
 const Fabicon = ({ onClick, style, icon, custom }) => {
   //mapeo de iconos
@@ -15,6 +16,7 @@ const Fabicon = ({ onClick, style, icon, custom }) => {
     person: PersonIcon,
     logout: LogoutIcon,
     edit: ModeEditIcon,
+    home: HomeIcon,
     default: KeyboardDoubleArrowUpIcon,
   }
   const Icon = icons[icon] || icons.default

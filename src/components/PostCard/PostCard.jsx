@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
 import "./PostCard.css"
 import { useNavigate, Link } from "react-router-dom"
@@ -6,6 +7,7 @@ import BoltOutlinedIcon from "@mui/icons-material/BoltOutlined"
 import { useEffect, useState } from "react"
 import { Like } from "../../services/postServices"
 import { useSelector } from "react-redux"
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 
 const PostCard = ({
   likes,
@@ -15,7 +17,8 @@ const PostCard = ({
   avatar,
   id,
   image,
-  onDelete, canDelete
+  onDelete,
+  canDelete,
 }) => {
   const [like, setLike] = useState([likes])
   const [userHasLiked, setUserHasLiked] = useState(false)
@@ -93,9 +96,19 @@ const PostCard = ({
             onClick={maybeOnClick}
           />
           <div className="card-footer text-end mt-3">{formattedDateTime}</div>
+
+          {canDelete && (
+            <DeleteForeverIcon
+              fontSize="large"
+              color="secondary"
+              className="clickable"
+              onClick={onDelete}
+            >
+              Eliminar
+            </DeleteForeverIcon>
+          )}
         </div>
       </div>
-     {canDelete && <button onClick={onDelete}>Eliminar</button> }
     </div>
   )
 }
