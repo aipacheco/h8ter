@@ -30,7 +30,6 @@ const Post = () => {
   }, [])
 
   const { avatar, username } = author
-  const { _id, content, publishedAt, image, likes } = singlePost
 
   return (
     <div>
@@ -40,14 +39,14 @@ const Post = () => {
         </div>
       ) : (
         <PostDetail
-          key={_id}
-          id={_id}
-          content={content}
+          key={singlePost._id}
+          id={singlePost._id}
+          content={singlePost.content}
           username={username}
-          publishedAt={publishedAt}
+          publishedAt={singlePost.publishedAt}
           avatar={avatar}
-          image={image}
-          likes={likes}
+          image={singlePost.image}
+          likes={singlePost.likes}
         />
       )}
     </div>

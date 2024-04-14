@@ -16,7 +16,7 @@ export const GetPosts = async () => {
     throw error
   }
 }
-export const Like = async (id, token) => {
+export const PutLike = async (id, token) => {
   try {
     const response = await fetch(`${URL}/like/${id}`, {
       method: "PUT",
@@ -69,6 +69,26 @@ export const CreatePost = async (body, token) => {
     return data
   } catch (error) {
     console.log("Error al guardar el post", error)
+    throw error
+  }
+}
+
+export const DeletePost = async (id, token) => {
+  try {
+    const response = await fetch(`${URL}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
     throw error
   }
 }

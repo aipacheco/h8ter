@@ -40,6 +40,13 @@ export const validator = (value, type) => {
       }
       return ""
     }
+    case "description" :{
+      //si es mayor de 180 letras
+      if (value.length > 180) {
+        return `la descripción tiene que ser máximo 180 caracteres.`
+      }
+      return ""
+    }
     default:
       console.log("pues ok")
   }

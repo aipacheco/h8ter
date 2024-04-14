@@ -1,11 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/prop-types */
 import "./PostCard.css"
 import { useNavigate, Link } from "react-router-dom"
 import moment from "moment"
 import BoltOutlinedIcon from "@mui/icons-material/BoltOutlined"
 import { useEffect, useState } from "react"
-import { Like } from "../../services/postServices"
+import { PutLike } from "../../services/postServices"
 import { useSelector } from "react-redux"
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 
 const PostCard = ({
   likes,
@@ -15,6 +17,8 @@ const PostCard = ({
   avatar,
   id,
   image,
+  onDelete,
+  canDelete,
 }) => {
   const [like, setLike] = useState([likes])
   const [userHasLiked, setUserHasLiked] = useState(false)
@@ -44,7 +48,7 @@ const PostCard = ({
     //ternaria para cambiar el color del icono
     setIconColor(userHasLiked ? "disabled" : "secondary")
     try {
-      await Like(id, token)
+      await PutLike(id, token)
     } catch (error) {
       // si falla
       setUserHasLiked(userHasLiked)
@@ -63,8 +67,10 @@ const PostCard = ({
     <div className="container mt-3">
       <div className="card card-post p-2">
         <div className="avatar-container">
-          <img className="avatar-post" src={avatar} alt="avatar" />
-          <Link className="m-2" to={`/${username}`}>
+          {avatar ? (
+            <img className="avatar-post" src={avatar} alt="avatar" />
+          ) : null}
+          <Link className="m-2" id="user-link" to={`/${username}`}>
             <div>{username}</div>
           </Link>
         </div>
@@ -90,6 +96,17 @@ const PostCard = ({
             onClick={maybeOnClick}
           />
           <div className="card-footer text-end mt-3">{formattedDateTime}</div>
+
+          {canDelete && (
+            <DeleteForeverIcon
+              fontSize="large"
+              color="secondary"
+              className="clickable"
+              onClick={onDelete}
+            >
+              Eliminar
+            </DeleteForeverIcon>
+          )}
         </div>
       </div>
     </div>
