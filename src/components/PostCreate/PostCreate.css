@@ -1,0 +1,36 @@
+.center-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+}
+
+.modal-content {
+  padding: 1.5em;
+}
+.custom-icon {
+  color: #ff00ff;
+  font-size: 5em;
+}
+
+.input-modal {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+.close-button {
+  text-align: right;
+  margin-bottom: 1em;
+  color: #414141;
+}
+textarea {
+  border-color: #ff00ff !important;
+  resize: none !important;
+}
+textarea:focus {
+  border-color: rgba(0, 255, 255, 1) !important;
+  outline: none !important;
+  box-shadow: -2px 2px 1px rgba(0, 255, 255, 1),
+    2px -2px 1px rgba(255, 0, 255, 1) !important;
+}

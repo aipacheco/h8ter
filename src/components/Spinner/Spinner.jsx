@@ -1,15 +1,11 @@
 import "./Spinner.css"
-import reactImage from './../../assets/react.svg'
+import Bolt from "./../../assets/Bolt.svg"
 
 const Spinner = () => {
   return (
-    <div className="container-fluid d-flex justify-content-center mt-5">
+    <div className="center-flex">
       {" "}
-      <img
-        src={reactImage}
-        alt="Cargando..."
-        className="loading-image"
-      />
+      <img src={Bolt} alt="Cargando..." className="loading-image" />
     </div>
   )
 }

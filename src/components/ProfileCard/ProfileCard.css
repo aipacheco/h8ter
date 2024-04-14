@@ -1,0 +1,54 @@
+.jumbotron {
+  height: 23em;
+  /* width: auto; */
+  border: none;
+  box-shadow: 0px 1px 1px #000000;
+  -webkit-animation: color-change-2x 2s linear infinite alternate both;
+	        animation: color-change-2x 2s linear infinite alternate both;
+}
+.jumbotron .card-img {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+ 
+}
+@-webkit-keyframes color-change-2x {
+  0% {
+    background: rgba(0,255,255,1);
+  }
+  100% {
+    background: rgba(255,0,255,1)
+  }
+}
+@keyframes color-change-2x {
+  0% {
+    background: rgba(0,255,255,1);
+  }
+  100% {
+    background: rgba(255,0,255,1)
+  }
+}
+
+.avatar-img {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+  object-fit: cover;
+  margin-top: 13em;
+  box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.8);
+}
+.icon-container {
+  text-align: right;
+}
+.edit-fab{
+  text-align: right;
+}
+.avatar-modal{
+  height: 5em;
+}
+.banner-modal{
+  height: 10em;
+}
+.form-control {
+  background-color: rgb(245, 250, 255);
+}
