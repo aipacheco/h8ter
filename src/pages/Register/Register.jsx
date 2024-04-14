@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 import Spinner from "../../components/Spinner/Spinner"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
 import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
-import LinkButton from "../../components/LinkButton/LinkButton"
 import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
 
 const Register = () => {

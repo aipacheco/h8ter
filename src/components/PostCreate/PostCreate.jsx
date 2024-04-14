@@ -9,7 +9,8 @@ import Fabicon from "../../components/FabIcon/FabIcon"
 import CloseIcon from "@mui/icons-material/Close"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { clearAuthToken } from "../../redux/authSlice"
 
 const PostCreator = ({ token, onPostCreated }) => {
   const [newPost, setNewPost] = useState({ content: "" })
@@ -22,6 +23,7 @@ const PostCreator = ({ token, onPostCreated }) => {
   })
   const [isModalOpen, setIsModalOpen] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const decode = useSelector((state) => state.auth.decode)
 
   //comprobar funcionamiento
@@ -77,6 +79,11 @@ const PostCreator = ({ token, onPostCreated }) => {
     }
   }
 
+  const handleLogout = () => {
+    dispatch(clearAuthToken())
+    navigate("/")
+  }
+
   return (
     <>
       <Modal
@@ -127,11 +134,17 @@ const PostCreator = ({ token, onPostCreated }) => {
           custom={"pink"}
           style={{ position: "fixed", bottom: 100, left: 30 }}
         />
+         <Fabicon
+          onClick={handleLogout}
+          icon={"logout"}
+          custom={"out"}
+          style={{ position: "fixed", bottom: 200, left: 30 }}
+        />
         <Fabicon
           onClick={() => navigate(`/${decode.username}`)}
           icon={"person"}
           custom={"blink"}
-          style={{ position: "fixed", bottom: 200, left: 30 }}
+          style={{ position: "fixed", bottom: 300, left: 30 }}
         />
       </>
     </>

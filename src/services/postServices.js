@@ -72,3 +72,24 @@ export const CreatePost = async (body, token) => {
     throw error
   }
 }
+
+export const DeletePost = async (id, token) => {
+  try {
+    const response = await fetch(`${URL}/${id}`, {
+      method: "DELETE",
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}

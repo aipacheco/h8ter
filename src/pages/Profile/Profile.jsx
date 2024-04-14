@@ -24,6 +24,15 @@ const Profile = () => {
   })
   const [userPosts, setUserPosts] = useState([])
   const [refreshPosts, setRefreshPosts] = useState(false)
+  const [ownProfile, setOwnProfile] = useState(false)
+
+  useEffect(() => {
+    if (token && decode.username === username) {
+      setOwnProfile(true)
+    } else {
+      setOwnProfile(false)
+    }
+  }, [token, decode, username])
 
   const fetchProfile = async () => {
     setLoading(true)
@@ -76,7 +85,9 @@ const Profile = () => {
               banner={profile.banner}
               username={profile.username}
               description={profile.description}
+              edit= {ownProfile}
             />
+            
             {token && (
               <PostCreator token={token} onPostCreated={handleNewPost} />
             )}

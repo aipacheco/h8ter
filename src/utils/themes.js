@@ -40,7 +40,7 @@ export const PinkTheme = createTheme({
     },
   },
 })
-export const BlinkTheme = createTheme({
+export const JelloTheme = createTheme({
   components: {
     MuiFab: {
       styleOverrides: {
@@ -52,7 +52,47 @@ export const BlinkTheme = createTheme({
             backgroundColor: "#c8ffff",
             boxShadow:
               "2px -2px 1px rgba(255, 0, 255, 1), -2px 2px 1px rgba(0, 255, 255, 1)",
-            animation: "blink-1 1s ",
+            animation: "jello-diagonal-1 0.8s",
+          },
+        },
+      },
+    },
+  },
+})
+
+export const OutTheme = createTheme({
+  components: {
+    MuiFab: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#f0f8ff",
+
+          color: "#2e2e2e",
+          "&:hover": {
+            backgroundColor: "#c8ffff",
+            boxShadow:
+              "2px -2px 1px rgba(255, 0, 255, 1), -2px 2px 1px rgba(0, 255, 255, 1)",
+            animation: "jello-horizontal 1s ",
+          },
+        },
+      },
+    },
+  },
+})
+
+export const EditTheme = createTheme({
+  components: {
+    MuiFab: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#f0f8ff",
+
+          color: "#2e2e2e",
+          "&:hover": {
+            backgroundColor: "#c8ffff",
+            boxShadow:
+              "2px -2px 1px rgba(255, 0, 255, 1), -2px 2px 1px rgba(0, 255, 255, 1)",
+            animation: "rotate-scale-up 0.65s ",
           },
         },
       },
