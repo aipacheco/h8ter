@@ -16,7 +16,7 @@ export const GetPosts = async () => {
     throw error
   }
 }
-export const Like = async (id, token) => {
+export const PutLike = async (id, token) => {
   try {
     const response = await fetch(`${URL}/like/${id}`, {
       method: "PUT",

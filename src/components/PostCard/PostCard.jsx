@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom"
 import moment from "moment"
 import BoltOutlinedIcon from "@mui/icons-material/BoltOutlined"
 import { useEffect, useState } from "react"
-import { Like } from "../../services/postServices"
+import { PutLike } from "../../services/postServices"
 import { useSelector } from "react-redux"
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 
@@ -48,7 +48,7 @@ const PostCard = ({
     //ternaria para cambiar el color del icono
     setIconColor(userHasLiked ? "disabled" : "secondary")
     try {
-      await Like(id, token)
+      await PutLike(id, token)
     } catch (error) {
       // si falla
       setUserHasLiked(userHasLiked)
