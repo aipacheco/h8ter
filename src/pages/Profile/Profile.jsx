@@ -11,7 +11,6 @@ import PostCreator from "../../components/PostCreate/PostCreate"
 import PostCard from "../../components/PostCard/PostCard"
 import { DeletePost } from "../../services/postServices"
 import { Modal } from "reactstrap"
-import CloseIcon from "@mui/icons-material/Close"
 
 const Profile = () => {
   const [alert, setAlert] = useState(false)
