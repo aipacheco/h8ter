@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login"
 import Navbar from "./components/Navbar/Navbar"
 import Profile from "./pages/Profile/Profile"
 import Post from "./pages/Post/Post"
+import Admin from "./pages/Admin/Admin"
 
 
 export const Layout = () => {
@@ -21,6 +22,8 @@ export const Layout = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/:username" element={<Profile />} />
           <Route path="/post/:id" element={<Post />} />
+          <Route path="/admin" element={<Admin />} />
+
         </Routes>
       </BrowserRouter>
     </>

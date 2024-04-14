@@ -79,11 +79,10 @@ export const DeletePost = async (id, token) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
     const data = await response.json()
-    console.log(data)
     if (!data.success) {
       throw new Error(data.message)
     }

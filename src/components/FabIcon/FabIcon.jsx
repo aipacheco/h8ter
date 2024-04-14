@@ -2,12 +2,19 @@
 import Fab from "@mui/material/Fab"
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp"
 import { ThemeProvider } from "@mui/material/styles"
-import { FabTheme, PinkTheme, OutTheme, EditTheme, JelloTheme } from "../../utils/themes"
+import {
+  FabTheme,
+  PinkTheme,
+  OutTheme,
+  EditTheme,
+  JelloTheme,
+} from "../../utils/themes"
 import AddIcon from "@mui/icons-material/Add"
 import PersonIcon from "@mui/icons-material/Person"
 import LogoutIcon from "@mui/icons-material/Logout"
-import ModeEditIcon from '@mui/icons-material/ModeEdit'
-import HomeIcon from '@mui/icons-material/Home';
+import ModeEditIcon from "@mui/icons-material/ModeEdit"
+import HomeIcon from "@mui/icons-material/Home"
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
 
 const Fabicon = ({ onClick, style, icon, custom }) => {
   //mapeo de iconos
@@ -17,6 +24,7 @@ const Fabicon = ({ onClick, style, icon, custom }) => {
     logout: LogoutIcon,
     edit: ModeEditIcon,
     home: HomeIcon,
+    admin: SupervisorAccountIcon,
     default: KeyboardDoubleArrowUpIcon,
   }
   const Icon = icons[icon] || icons.default

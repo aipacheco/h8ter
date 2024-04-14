@@ -44,3 +44,44 @@ export const UpdateProfile = async (profile, token) => {
     throw error
   }
 }
+
+export const GetAllUsers = async (token) => {
+  try {
+    const response = await fetch(`${URL}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      redirect: "follow",
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+
+export const InactivateUser = async (userId, token) => {
+  try {
+    const response = await fetch(`${URL}/inactive/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}

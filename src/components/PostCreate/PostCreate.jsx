@@ -81,7 +81,7 @@ const PostCreator = ({ token, onPostCreated }) => {
 
   const handleLogout = () => {
     dispatch(clearAuthToken())
-    navigate("/")
+    navigate("/login", { replace: true })
   }
 
   return (
