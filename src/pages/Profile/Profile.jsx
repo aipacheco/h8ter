@@ -10,6 +10,8 @@ import AlertCustom from "../../components/AlertCustom/AlertCustom"
 import PostCreator from "../../components/PostCreate/PostCreate"
 import PostCard from "../../components/PostCard/PostCard"
 import { DeletePost } from "../../services/postServices"
+import { Modal } from "reactstrap"
+import CloseIcon from "@mui/icons-material/Close"
 
 const Profile = () => {
   const [alert, setAlert] = useState(false)
@@ -22,6 +24,8 @@ const Profile = () => {
   const [userPosts, setUserPosts] = useState([])
   const [refreshPosts, setRefreshPosts] = useState(false)
   const [ownProfile, setOwnProfile] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedId, setSelectedId] = useState(null)
   const token = useSelector((state) => state.auth.token)
   const decode = useSelector((state) => state.auth.decode)
 
@@ -62,8 +66,14 @@ const Profile = () => {
     // cambia el estado desde PostCreate
     setRefreshPosts((prev) => !prev)
   }
+  const handleModal = (id) => {
+    setSelectedId(id)
+    setIsModalOpen(true)
+  }
 
-  const handleDeletePost = async (id) => {
+  const handleDeletePost = async () => {
+    setLoading(true)
+    const id = selectedId
     try {
       const deletedPost = await DeletePost(id, token)
       if (deletedPost.success) {
@@ -73,13 +83,46 @@ const Profile = () => {
           return [...updatedPosts]
         })
       }
+      setLoading(false)
+      setIsModalOpen(false)
     } catch (error) {
       console.log(error)
+      setLoading(false)
+      setAlert(true)
+      setStateMessage({
+        message: `${error}`,
+        className: "danger",
+      })
+      setTimeout(() => {
+        setAlert(false)
+      }, 1200)
     }
   }
 
   return (
     <>
+      <>
+        <Modal
+          className="center-modal"
+          isOpen={isModalOpen}
+          toggle={() => setIsModalOpen(false)}
+        >
+          <h2>Confirmar Eliminación</h2>
+          <p>¿Estás seguro de que deseas eliminar el post?</p>
+          <button
+            className="btn btn-outline-info mb-2"
+            onClick={handleDeletePost}
+          >
+            Confirmar
+          </button>
+          <button
+            className="btn btn-outline-dark"
+            onClick={() => setIsModalOpen(false)}
+          >
+            Cancelar
+          </button>
+        </Modal>
+      </>
       {loading ? (
         <div className="centered-container">
           <Spinner />
@@ -132,7 +175,7 @@ const Profile = () => {
                     image={post.image}
                     likes={post.likes}
                     canDelete={ownProfile}
-                    onDelete={() => handleDeletePost(post._id)}
+                    onDelete={() => handleModal(post._id)}
                   />
                 ))}
             </div>
