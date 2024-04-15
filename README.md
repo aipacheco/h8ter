@@ -23,12 +23,16 @@ Este proyecto requería conexión a una API funcional y usar react para crear un
 
 ## Funcionalidades
 ⚡El usuario puede crear un post tanto desde home como desde su perfil y en la vista de detalles de un post
-⚡El usuario puede editar su descripción, su banner y su avatar
-⚡El usuario puede dar o quitar likes tanto en la vista de perfil como en la de detalle o en home
-⚡En home se muestran los posts de perfiles privados
-⚡El admin puede inactivar usuarios
-⚡Si un usuario está inactivo no puede iniciar sesión
 
+⚡El usuario puede editar su descripción, su banner y su avatar
+
+⚡El usuario puede dar o quitar likes tanto en la vista de perfil como en la de detalle o en home
+
+⚡En home se muestran los posts de perfiles privados
+
+⚡El admin puede inactivar usuarios
+
+⚡Si un usuario está inactivo no puede iniciar sesión
 
 ## Deploy 🚀
 <div align="center">
@@ -74,8 +78,11 @@ Admin
 ## Futuras funcionalidades
   
 ⬜ Comentarios y seguir a usuarios para que la vista de post en detalle sea más completa
+
 ⬜ Poder hacer peticiones de amistad a usuarios privados
+
 ⬜ Reactivar usuarios inactivos  
+
 
 
 ## Contribuciones
@@ -107,7 +114,6 @@ Para conseguir mi objetivo he recopilado información y usado estas librerías:
 - https://github.com/motdotla/dotenv
 - https://momentjs.com/
 - https://reactstrap.github.io/?path=/story/home-installation--page
-- 
 
  
 
