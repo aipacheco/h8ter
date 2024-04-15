@@ -64,7 +64,7 @@ const PostCard = ({
   }
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-3 mb-3">
       <div className="card card-post p-2">
         <div className="avatar-container">
           {avatar ? (
