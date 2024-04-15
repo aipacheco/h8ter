@@ -1,4 +1,5 @@
 # H8ter
+<img src="/src/assets/h8ter.png">  
 
 <details>
   <summary>Contenido 📝</summary>
