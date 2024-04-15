@@ -1,11 +1,11 @@
 export const validator = (value, type) => {
-  const regexString = /^[^\s]+$/
+  const regexString = /^[a-zA-Z0-9]+$/
   const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
 
   switch (type) {
     case "username": {
       if (!regexString.test(value)) {
-        return `El nombre tiene que estar formado por caracteres correctos (de la A a la Z).`
+        return `El nombre tiene que estar formado por caracteres correctos (sólo números y letras).`
       }
       //si es menor de 3 letras
       if (value.length < 3) {
