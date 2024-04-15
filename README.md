@@ -110,7 +110,9 @@ Admin
 <img src="./src/assets/admin.png">
 
 ## Futuras funcionalidades
-  
+
+⬜ Creación de imágenes en el post, ya que el back-end lo permite
+
 ⬜ Comentarios y seguir a usuarios para que la vista de post en detalle sea más completa
 
 ⬜ Poder hacer peticiones de amistad a usuarios privados
