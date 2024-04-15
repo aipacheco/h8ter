@@ -1,4 +1,4 @@
-# H8ter
+# H8ter™️
 
 <img src="/src/assets/hater.png">  
 
