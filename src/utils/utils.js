@@ -1,5 +1,5 @@
 export const validator = (value, type) => {
-  const regexString = /^[a-zA-Z ]+$/
+  const regexString = /^[^\s]+$/
   const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
 
   switch (type) {
