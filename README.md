@@ -66,6 +66,8 @@ Este proyecto requería conexión a una API funcional y usar react para crear un
 
 ⚡Si un usuario está inactivo no puede iniciar sesión
 
+⚡Manejo de errores en las peticiones del back-end
+
 ## Deploy 🚀
 <div align="center">
     <a href="https://h8terrrss.zeabur.app/"><strong>Url a producción </strong></a>🚀🚀🚀
