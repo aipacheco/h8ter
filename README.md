@@ -22,31 +22,30 @@
 <details>
   <summary>Zona para profesores ℹ️</summary>
   <ol>
-    <li><a href="#usuario-admin">Usuario admin</a></li>
-    <li><a href="#usuario-de-prueba">Usuario de prueba</a></li>
-    <li><a href="#usuario-inactivo">Usuario inactivo</a></li>
-  </ol>
-</details>
-
-## Usuario superadmin: 
+    <li>Usuario superadmin: 
 
    ```
 superadmin@superadmin.com
 password: 123456789
 ```
-
-## Usuario de prueba
+</li>
+    <li>Usuario de prueba
+      
    ```
 alex@gmail.com
 password: 123456789
 ```
-
-## Usuario inactivo
+  </li>
+    <li>Usuario inactivo
 
    ```
 kornetera@gmail.com
 password: 123456789
 ```
+</li>
+  </ol>
+</details>
+
 
 
 ## Objetivo 🎯
