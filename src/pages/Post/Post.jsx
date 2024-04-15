@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { GetPostById } from "../../services/postServices"
 import PostDetail from "../../components/PostDetail/PostDetail"
 import Spinner from "../../components/Spinner/Spinner"
+import Footer from "../../components/Footer/Footer"
 
 const Post = () => {
   const [loading, setLoading] = useState(false)
@@ -49,6 +50,7 @@ const Post = () => {
           likes={singlePost.likes}
         />
       )}
+            <Footer />
     </div>
   )
 }
