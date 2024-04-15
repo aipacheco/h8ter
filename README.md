@@ -9,6 +9,7 @@
     <li><a href="#stack">Stack</a></li>
     <li><a href="#instalación-en-local">Instalación</a></li>
     <li><a href="#vistas">Vistas</a></li>
+    <li><a href="#funcionalidades">Funcionalidades</a></li>
     <li><a href="#futuras-funcionalidades">Futuras funcionalidades</a></li>
     <li><a href="#contribuciones">Contribuciones</a></li>
     <li><a href="#webgrafia">Webgrafia</a></li>
@@ -18,6 +19,15 @@
 
 ## Objetivo 🎯
 Este proyecto requería conexión a una API funcional y usar react para crear una web que conecte con la API encargada de gestionar una red social llamada H8ter.
+
+## Funcionalidades
+⚡El usuario puede crear un post tanto desde home como desde su perfil y en la vista de detalles de un post
+⚡El usuario puede editar su descripción, su banner y su avatar
+⚡El usuario puede dar o quitar likes tanto en la vista de perfil como en la de detalle o en home
+⚡En home se muestran los posts de perfiles privados
+⚡El admin puede inactivar usuarios
+⚡Si un usuario está inactivo no puede iniciar sesión
+
 
 ## Deploy 🚀
 <div align="center">
@@ -63,6 +73,7 @@ Admin
 ## Futuras funcionalidades
   
 ⬜ Comentarios y seguir a usuarios para que la vista de post en detalle sea más completa
+⬜ Poder hacer peticiones de amistad a usuarios privados
 ⬜ Reactivar usuarios inactivos  
 
 
