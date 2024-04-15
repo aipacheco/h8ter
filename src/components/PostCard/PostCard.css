@@ -32,3 +32,6 @@
 #user-link{
   color: rgba(255, 0, 255, 1) !important;
 }
+.white{
+  display: none !important;
+}
