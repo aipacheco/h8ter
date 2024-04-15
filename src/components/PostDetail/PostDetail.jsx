@@ -86,6 +86,7 @@ const PostDetail = ({
             fontSize="large"
             onClick={maybeOnClick}
           />
+           {token && <span className="likes-count">{likes.length}</span>}
           <div className="card-footer text-end mt-3">{formattedDateTime}</div>
         </div>
         {token && <PostCreator token={token} onPostCreated={handleNewPost} />}
