@@ -1,5 +1,6 @@
 # H8ter
-<img src="/src/assets/h8ter.png">  
+
+<img src="/src/assets/hater.png">  
 
 <details>
   <summary>Contenido 📝</summary>
@@ -18,6 +19,36 @@
   </ol>
 </details>
 
+<details>
+  <summary>Zona para profesores ℹ️</summary>
+  <ol>
+    <li><a href="#usuario-admin">Usuario admin</a></li>
+    <li><a href="#usuario-de-prueba">Usuario de prueba</a></li>
+    <li><a href="#usuario-inactivo">Usuario inactivo</a></li>
+  </ol>
+</details>
+
+## Usuario superadmin: 
+
+   ```
+superadmin@superadmin.com
+password: 123456789
+```
+
+## Usuario de prueba
+   ```
+alex@gmail.com
+password: 123456789
+```
+
+## Usuario inactivo
+
+   ```
+kornetera@gmail.com
+password: 123456789
+```
+
+
 ## Objetivo 🎯
 Este proyecto requería conexión a una API funcional y usar react para crear una web que conecte con la API encargada de gestionar una red social llamada H8ter.
 
@@ -25,6 +56,8 @@ Este proyecto requería conexión a una API funcional y usar react para crear un
 ⚡El usuario puede crear un post tanto desde home como desde su perfil y en la vista de detalles de un post
 
 ⚡El usuario puede editar su descripción, su banner y su avatar
+
+⚡El usuario puede borrar sus propios posts
 
 ⚡El usuario puede dar o quitar likes tanto en la vista de perfil como en la de detalle o en home
 
