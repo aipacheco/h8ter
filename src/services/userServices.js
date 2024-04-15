@@ -34,7 +34,7 @@ export const UpdateProfile = async (profile, token) => {
     })
 
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     if (!data.success) {
       throw new Error(data.message)
     }
